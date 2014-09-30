@@ -1,0 +1,349 @@
+*{
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	font-family: "Courier New", monospace;
+}
+
+body{
+	font-size: 16px;
+}
+
+h1{
+	display: inline-block;
+}
+
+h2{
+	font-size: 1em;
+	font-weight: normal;
+}
+
+textarea,
+div [contenteditable="true"]{
+	font-size: 14px;
+	border: 2px #DDDDDD groove;
+	outline: none;
+	background-color: #FFFFFF;
+	white-space: pre;
+	overflow-y: auto;
+}
+
+button{
+	border: 2px #DDDDDD outset;
+	background-image: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
+	padding: 3px;
+	cursor: pointer;
+	outline: none;
+}
+
+button:hover{
+	border: 2px #DDDDDD outset;
+	background-color: #FFFFFF;
+	background-image: none;
+}
+
+button:active{
+	border: 2px #DDDDDD inset;
+	background-image: linear-gradient(to top, #FFFFFF, #EEEEEE);
+}
+
+input[type="text"]{
+	border: 2px #DDDDDD groove;
+	outline: none;
+	height: 14px;
+	padding: 2px;
+}
+
+hr{
+	border-top: 1px #888888 solid;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+#centrificator{
+	max-width: 1031px;
+	margin: 10px auto;
+}
+
+.register{
+	display: inline-block;
+	border: 1px #000000 solid;
+	width: 120px;
+	text-align: center;
+	margin-top: 5px;
+	margin-left: 5px;
+	background-color: #EEEEFF;
+}
+
+.registerValue{
+	border-top: 1px #000000 solid;
+	margin-top: 1px;
+	height: 18px;
+	background-color: #F8F8FF;
+	transition: background-color;
+	transition-timing-function: ease-out;
+	transition-duration: 250ms;
+}
+
+.registerValue.read,
+#ramtable td.read,
+#stacktable td.read,
+#flagtable td.read{
+	background-color: #FFAA00;
+	transition-duration: 0ms;
+}
+
+.registerValue.written,
+#ramtable td.written,
+#stacktable td.written,
+#flagtable td.written{
+	background-color: #AA55FF;
+	transition-duration: 0ms;
+}
+
+#about{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 375px;
+	text-align: center;
+	padding-top: 10px;
+}
+
+#romInput{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 6px;
+	margin-top: 5px;
+	width: 501px;
+	height: 358px;
+	background-color: #F8F8FF;
+	border: 1px #000000 solid;
+	overflow: hidden;
+}
+
+#romInput h2{
+	display: block;
+	width: 100%;
+	background-color: #EEEEFF;
+	padding-left: 5px;
+	border-bottom: 1px #000000 solid;
+}
+
+#romInput #romText{
+	position: absolute;
+	display: block;
+	width: 492px;
+	margin: 5px;
+	height: 295px;
+	box-sizing: border-box;
+	background-color: transparent;
+	color: rgba(0, 0, 0, 0.1);
+}
+
+#romInput #romDisplay{
+	display: block;
+	width: 492px;
+	margin: 5px;
+	height: 295px;
+	box-sizing: border-box;
+}
+
+#loadRamButton{
+	margin-left: 5px;
+}
+
+#loadToAddress{
+	width: 40px;
+	text-align: right;
+}
+
+#ram{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 627px;
+	background-color: #F8F8FF;
+	border: 1px #000000 solid;
+	overflow: hidden;
+}
+
+#ram h2{
+	display: block;
+	width: 100%;
+	background-color: #EEEEFF;
+	padding-left: 5px;
+	border-bottom: 1px #000000 solid;
+}
+
+.memtable{
+	border-collapse: collapse;
+	margin: 5px;
+}
+
+.memtable td{
+	border: 1px #CCCCCC solid;
+	width: 45px;
+	height: 14px;
+	text-align: center;
+	background-color: #FEFEFF;
+	transition: background-color;
+	transition-timing-function: ease-out;
+	transition-duration: 500ms;
+	cursor: default;
+}
+
+.memtable td:hover{
+	background-color: #FFFFAA;
+	transition-duration: 100ms;
+}
+
+#rightpanel{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.rightPanelDiv{
+	display: block;
+	width: 375px;
+	background-color: #F8F8FF;
+	border: 1px #000000 solid;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+.rightPanelDiv h2{
+	display: block;
+	width: 100%;
+	background-color: #EEEEFF;
+	padding-left: 5px;
+	border-bottom: 1px #000000 solid;
+}
+
+#moreRegistersPanel{
+	display: inline-block;
+}
+
+#moreRegistersPanel div{
+	display: block;
+}
+
+#flagtable{
+	border-collapse: collapse;
+	margin: 5px;
+}
+
+#flagtable td{
+	border: 1px #CCCCCC solid;
+	text-align: center;
+	background-color: #FEFEFF;
+	padding: 2px;
+	width: 90px;
+	transition: background-color;
+	transition-timing-function: ease-out;
+	transition-duration: 250ms;
+}
+
+#control button{
+	margin-right: 5px;
+}
+
+#run{
+	margin: 5px;
+}
+
+#run:active{
+	border: 2px #AADDAA inset;	
+}
+
+.runButton{
+	background-image: linear-gradient(to bottom, #DDFFDD, #AAFFAA);
+	border: 2px #AADDAA outset;
+}
+
+.runButton:active{
+	border: 2px #AADDAA inset;	
+}
+
+.stopButton{
+	background-image: linear-gradient(to bottom, #FFDDDD, #FFAAAA);
+	border: 2px #DDAAAA outset;
+}
+
+.stopButton:active{
+	border: 2px #DDAAAA inset;	
+}
+
+#rightpanel .controlValueLabel{
+	margin-left: 5px;
+	display: inline-block;
+	width: 176px;
+}
+
+#rightpanel .controlValueButton{
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#rightpanel .controlValue{
+	width: 40px;
+	text-align: right;
+	height: 18px;
+}
+
+#rightpanel #frequencyLabel{
+	width: 120px;
+	height: 30px;
+}
+
+#rightpanel #frequency{
+	text-align: right;
+	width: 153px;
+}
+
+.e-comment{
+	color: #55CC44;
+}
+
+.e-valid-instruction{
+	color: #0000FF;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.e-invalid-instruction{
+	color: #FF0000;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.e-label{
+	color: #FFAA00;
+	font-style: italic;
+}
+
+.e-define-label{
+	color: #FFAA00;
+	text-decoration: underline;
+}
+
+.e-octal{
+	color: #FF00FF;
+	font-weight: bold;
+}
+
+.e-binary{
+	color: #00AAFF;
+	font-weight: bold;
+}
+
+
+
+
+
+
+

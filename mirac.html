@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://rolandrytz.ch/various/mirac/future/mirac.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link href="./mirac.css" rel="stylesheet" type="text/css" media="all">
+		<title>
+			MIRAC Emulator
+		</title>
+	</head>
+	<body>
+		<div id="centrificator">
+			<div class="register">
+				Program Ctr
+				<div id="r1" class="registerValue"></div>
+			</div><div class="register">
+				Accumulator
+				<div id="r0" class="registerValue"></div>
+			</div><div class="register">
+				Instruction
+				<div id="r2" class="registerValue"></div>
+			</div><div class="register">
+				Argument Rg
+				<div id="r3" class="registerValue"></div>
+			</div><div class="register">
+				ALU Operand
+				<div id="r4" class="registerValue"></div>
+			</div><div class="register">
+				Address Bus
+				<div id="r5" class="registerValue"></div>
+			</div><div class="register">
+				Data Bus In
+				<div id="r6" class="registerValue"></div>
+			</div><div class="register">
+				DataBus Out
+				<div id="r7" class="registerValue"></div>
+			</div>
+			<br>
+			<div id="moreRegistersPanel">
+				<div class="register">
+					StackPointr
+					<div id="r11" class="registerValue"></div>
+				</div><div class="register">
+					Gen.Purpose
+					<div id="r100" class="registerValue" title="g0"></div>
+					<div id="r101" class="registerValue" title="g1"></div>
+					<div id="r102" class="registerValue" title="g2"></div>
+					<div id="r103" class="registerValue" title="g3"></div>
+					<div id="r104" class="registerValue" title="g4"></div>
+					<div id="r105" class="registerValue" title="g5"></div>
+					<div id="r106" class="registerValue" title="g6"></div>
+					<div id="r107" class="registerValue" title="g7"></div>
+				</div><div class="register">
+					Device Addr
+					<div id="r8" class="registerValue"></div>
+				</div><div class="register">
+					Device Din
+					<div id="r9" class="registerValue"></div>
+				</div><div class="register">
+					Device Dout
+					<div id="r10" class="registerValue"></div>
+				</div>
+			</div><div id="about">
+				<h1>MIRAC Emulator</h1>
+				<p>
+					Version such-and-such
+				</p>
+				<br>
+				<p>
+					A JavaScript emulation of the <b>MI</b>necraft <b>R</b>edstone <b>A</b>utomatic <b>C</b>omputer.
+				</p>
+				<br>
+				<p>
+					<a href="https://github.com/RolandR/MIRAC-Emulator">Github and stuff</a>
+				</p>
+				<br>
+				<p>
+					Uh, I'll put specs online sometime. Sometime in the fuuuuuutureee. But as of right now, most of the instructions aren't implemented anyway.
+				</p>
+			</div><div id="romInput">
+				<h2>MIRAC Assembly Input</h2>
+				<div id="#romLines">
+				</div>
+				<textArea 
+					id="romText"
+					spellcheck="false"
+					onkeydown="setTimeout(editor.onEdit);"
+					onkeyup="editor.onEdit();"
+					onpaste="setTimeout(editor.onEdit);"
+					onmouseup="editor.onEdit();"
+					onscroll="editor.onScroll();"
+				>// Sample program demonstrating the stack and other
+// features of MIRAC
+
+$start:
+JSRT $doSomething  // Jump to subroutine
+LDAI 000           // Load 000 to accumulator
+WRAI $recursion    // Write accumulator to $recursion
+JMPI $start        // Jump to start
+
+$doSomething:
+LDAM $recursion    // Load value at $recursion to accu
+OPRA               // Accumulator to operand register
+LDAI 001           // Load 001 to accu
+ADDC               // Add accu and operand
+WRAI $recursion    // Write result to $recursion
+OPRA               // Accumulator to operand register
+LDAI #11111000     // Load -8 to accumulator
+ADDC               // Add
+BRZS $skip         // If accu -8 = 0, skip to $skip
+JSRT $doSomething  // Else, jump to subroutine
+$skip:
+RSRT               // Return from subroutine
+
+$recursion: 000
+
+
+
+</textArea>
+				<div id="romDisplay" contenteditable="true"></div>
+				<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button><span id="atAddress"> starting at octal address </span><input id="loadToAddress" type="text" value="0">
+			</div>
+			<br>
+			<div id="ram">
+				<h2>Memory</h2>
+				<table id="ramtable" class="memtable">
+					<tbody id="ramtbody"></tbody>
+				</table>
+			</div><div id="rightpanel"><div id="control" class="rightPanelDiv">
+				<h2>Control</h2>
+				<button id="run" class="runButton" onclick="Control.toggleRun()">Start</button><!-- Maaaaan, why does html interpret line breaks? Even for inline elements, that's somewhat silly.
+			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step.">Step</button><!--
+			 --><button id="resetpc" onclick="Control.reset();" title="Clears registers and flags.">Reset to start</button><!--
+			 --><button id="resetmem" onclick="Control.clearRam();" title="Clears memory and all registers and flags.">Hard reset</button>
+				<hr>
+				<span class="controlValueLabel">Cycle interval: </span><!--
+			 --><input class="controlValue" id="cycleInterval" type="text" value="200" /><!--
+			 --><button class="controlValueButton" id="cycleIntervalButton" onclick="Control.updateCycleInterval();">Apply</button><!--
+			 --><hr>
+				<span class="controlValueLabel">Set PC (octal): </span><!--
+			 --><input class="controlValue" id="setPC" type="text" value="0" /><!--
+			 --><button class="controlValueButton" id="setPCButton" onclick="Control.setPC();">Apply</button><!--
+			 --><hr>
+				<span class="controlValueLabel" id="frequencyLabel">Running at: </span><!--
+			 --><span class="controlValueLabel" id="frequency" title="Breathtaking speeds!">(Paused)</span>
+			 
+			 </div><div id="flags" class="rightPanelDiv">
+				<h2>Flags</h2>
+				<table id="flagtable">
+					<tbody>
+						<tr>
+							<td>Carry</td>
+							<td>Zero</td>
+							<td>Overflow</td>
+							<td>Negative</td>
+						</tr>
+						<tr>
+							<td id="f0" class="">0</td>
+							<td id="f1" class="">0</td>
+							<td id="f2" class="">0</td>
+							<td id="f3" class="">0</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><div id="stack" class="rightPanelDiv">
+				<h2>Call Stack</h2>
+				<table id="stacktable" class="memtable">
+					<tbody id="stacktbody"></tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+	
+
+
+<script type="text/javascript" src="./mirac.js"></script></body></html>
