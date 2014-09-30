@@ -1,12 +1,14 @@
+@import url(openSansFont/OpenSans.css);
+
 *{
 	border: none;
 	margin: 0px;
 	padding: 0px;
-	font-family: "Courier New", monospace;
 }
 
 body{
 	font-size: 16px;
+	font-family: "Courier New", monospace;
 }
 
 h1{
@@ -18,40 +20,61 @@ h2{
 	font-weight: normal;
 }
 
+p{
+	margin-bottom: 15px;
+}
+
 textarea,
 div [contenteditable="true"]{
 	font-size: 14px;
-	border: 2px #DDDDDD groove;
+	border: 1px #DDDDDD solid;
 	outline: none;
 	background-color: #FFFFFF;
 	white-space: pre;
 	overflow-y: auto;
+	font-family: "Courier New", monospace;
+	box-sizing: border-box;
+	resize: none; 
+}
+
+textarea:hover, textarea:active, textarea:focus,
+div [contenteditable="true"]:hover, div [contenteditable="true"]:active, div [contenteditable="true"]:focus{
+	border-color: #AAAAAA;
 }
 
 button{
-	border: 2px #DDDDDD outset;
-	background-image: linear-gradient(to bottom, #FFFFFF, #EEEEEE);
-	padding: 3px;
+	border: 1px #CCCCCC solid;
+	background-image: linear-gradient(to bottom, #FFFFFF, #F0F0F0);
+	padding: 3px 6px;
 	cursor: pointer;
 	outline: none;
+	height: 25px;
+	font-family: "Courier New", monospace;
 }
 
 button:hover{
-	border: 2px #DDDDDD outset;
+	border: 1px #DDDDDD solid;
 	background-color: #FFFFFF;
 	background-image: none;
 }
 
 button:active{
-	border: 2px #DDDDDD inset;
+	border: 1px #BBBBBB solid;
 	background-image: linear-gradient(to top, #FFFFFF, #EEEEEE);
 }
 
-input[type="text"]{
-	border: 2px #DDDDDD groove;
+input[type="text"],
+input[type="number"]{
+	border: 1px #DDDDDD solid;
 	outline: none;
-	height: 14px;
+	height: 15px;
 	padding: 2px;
+	font-family: "Courier New", monospace;
+}
+
+input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus,
+input[type="number"]:hover, input[type="number"]:active, input[type="number"]:focus{
+	border-color: #AAAAAA;
 }
 
 hr{
@@ -101,6 +124,15 @@ hr{
 	transition-duration: 0ms;
 }
 
+#miracLogo{
+	padding: 9px;
+	background-color: #F8F8FF;
+	box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+	margin-top: 5px;
+	margin-bottom: 15px;
+	padding-bottom: 14px;
+}
+
 #about{
 	display: inline-block;
 	vertical-align: top;
@@ -109,9 +141,13 @@ hr{
 	width: 375px;
 	text-align: center;
 	padding-top: 10px;
+	font-family: OpenSans, sans-serif;
+	font-weight: 200;
+	
 }
 
 #romInput{
+	position: absolute;
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 6px;
@@ -121,6 +157,10 @@ hr{
 	background-color: #F8F8FF;
 	border: 1px #000000 solid;
 	overflow: hidden;
+	
+	transition: margin-left, width, margin-top, height;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
 }
 
 #romInput h2{
@@ -134,20 +174,47 @@ hr{
 #romInput #romText{
 	position: absolute;
 	display: block;
-	width: 492px;
-	margin: 5px;
-	height: 295px;
+	top: 30px;
+	left: 5px;
+	right: 5px;
+	bottom: 35px;
 	box-sizing: border-box;
 	background-color: transparent;
 	color: rgba(0, 0, 0, 0.1);
+	padding: 5px;
 }
 
 #romInput #romDisplay{
+	position: absolute;
 	display: block;
-	width: 492px;
-	margin: 5px;
-	height: 295px;
+	top: 30px;
+	left: 5px;
+	right: 5px;
+	bottom: 35px;
 	box-sizing: border-box;
+	padding: 5px;
+}
+
+#romInput #biggerButton{
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	width: 16px;
+	height: 16px;
+	padding: 0px;
+	line-height: 0px;
+}
+
+#romInput #romControls{
+	position: absolute;
+	bottom: 5px;
+}
+
+#romInput.bigger{
+	margin-left: -502px;
+	width: 1009px;
+	margin-top: -40px;
+	height: 95%;
 }
 
 #loadRamButton{
@@ -257,25 +324,25 @@ hr{
 }
 
 #run:active{
-	border: 2px #AADDAA inset;	
+	border-color: #AADDAA;	
 }
 
 .runButton{
 	background-image: linear-gradient(to bottom, #DDFFDD, #AAFFAA);
-	border: 2px #AADDAA outset;
+	border-color: #AADDAA;	
 }
 
 .runButton:active{
-	border: 2px #AADDAA inset;	
+	border-color: #AADDAA;	
 }
 
 .stopButton{
 	background-image: linear-gradient(to bottom, #FFDDDD, #FFAAAA);
-	border: 2px #DDAAAA outset;
+	border-color: #DDAAAA;	
 }
 
 .stopButton:active{
-	border: 2px #DDAAAA inset;	
+	border-color: #DDAAAA;	
 }
 
 #rightpanel .controlValueLabel{

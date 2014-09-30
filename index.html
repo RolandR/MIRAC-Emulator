@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)http://rolandrytz.ch/various/mirac/future/mirac.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<link href="./mirac.css" rel="stylesheet" type="text/css" media="all">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link href="./_css/mirac.css" rel="stylesheet" type="text/css" media="all">
 		<title>
 			MIRAC Emulator
 		</title>
@@ -33,7 +34,7 @@
 				DataBus Out
 				<div id="r7" class="registerValue"></div>
 			</div>
-			<br>
+			<br />
 			<div id="moreRegistersPanel">
 				<div class="register">
 					StackPointr
@@ -59,29 +60,31 @@
 					<div id="r10" class="registerValue"></div>
 				</div>
 			</div><div id="about">
-				<h1>MIRAC Emulator</h1>
+				<img src="./Mirac-Logo.svg" id="miracLogo" width="320" alt="MIRAC Emulator"/>
+				<br />
 				<p>
-					Version such-and-such
+					This is a JavaScript emulation of the<br />
+					Minecraft Redstone Automatic Computer.
 				</p>
-				<br>
 				<p>
-					A JavaScript emulation of the <b>MI</b>necraft <b>R</b>edstone <b>A</b>utomatic <b>C</b>omputer.
+					Documentation about the architecture, instruction set, assembly language and other topics:<br />
+					<a href="./docs/Mirac.pdf" target="_blank">Download</a> (pdf, 42k).
 				</p>
-				<br>
 				<p>
-					<a href="https://github.com/RolandR/MIRAC-Emulator">Github and stuff</a>
+					Currently, not all planned instructions are implemented in the MIRAC CPU.
 				</p>
-				<br>
 				<p>
-					Uh, I'll put specs online sometime. Sometime in the fuuuuuutureee. But as of right now, most of the instructions aren't implemented anyway.
+					<a href="https://github.com/RolandR/MIRAC-Emulator" target="_blank">Github Repository</a>. Made by <a href="http://rolandrytz.ch" target="_blank">Roland Rytz</a>.
 				</p>
 			</div><div id="romInput">
-				<h2>MIRAC Assembly Input</h2>
+				<h2><abbr title="MIDAS - Mirac Direct Assembly">MIDAS</abbr> Assembly Input<button id="biggerButton" onclick="Control.toggleEditorSize();">+</button></h2>
 				<div id="#romLines">
 				</div>
-				<textArea 
+				<div
 					id="romText"
+					contenteditable="true"
 					spellcheck="false"
+					oninput="setTimeout(editor.onEdit)"
 					onkeydown="setTimeout(editor.onEdit);"
 					onkeyup="editor.onEdit();"
 					onpaste="setTimeout(editor.onEdit);"
@@ -114,11 +117,15 @@ $recursion: 000
 
 
 
-</textArea>
+</div>
 				<div id="romDisplay" contenteditable="true"></div>
-				<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button><span id="atAddress"> starting at octal address </span><input id="loadToAddress" type="text" value="0">
+				<div id="romControls">
+					<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button>
+					<span id="atAddress"> starting at octal address </span>
+					<input id="loadToAddress" type="number" value="0">
+				</div>
 			</div>
-			<br>
+			<br />
 			<div id="ram">
 				<h2>Memory</h2>
 				<table id="ramtable" class="memtable">
@@ -130,15 +137,15 @@ $recursion: 000
 			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step.">Step</button><!--
 			 --><button id="resetpc" onclick="Control.reset();" title="Clears registers and flags.">Reset to start</button><!--
 			 --><button id="resetmem" onclick="Control.clearRam();" title="Clears memory and all registers and flags.">Hard reset</button>
-				<hr>
+				<hr />
 				<span class="controlValueLabel">Cycle interval: </span><!--
-			 --><input class="controlValue" id="cycleInterval" type="text" value="200" /><!--
+			 --><input class="controlValue" id="cycleInterval" type="number" value="200" /><!--
 			 --><button class="controlValueButton" id="cycleIntervalButton" onclick="Control.updateCycleInterval();">Apply</button><!--
-			 --><hr>
+			 --><hr />
 				<span class="controlValueLabel">Set PC (octal): </span><!--
-			 --><input class="controlValue" id="setPC" type="text" value="0" /><!--
+			 --><input class="controlValue" id="setPC" type="number" value="0" /><!--
 			 --><button class="controlValueButton" id="setPCButton" onclick="Control.setPC();">Apply</button><!--
-			 --><hr>
+			 --><hr />
 				<span class="controlValueLabel" id="frequencyLabel">Running at: </span><!--
 			 --><span class="controlValueLabel" id="frequency" title="Breathtaking speeds!">(Paused)</span>
 			 
@@ -168,7 +175,20 @@ $recursion: 000
 			</div>
 			</div>
 		</div>
-	
-
-
-<script type="text/javascript" src="./mirac.js"></script></body></html>
+		<script type="text/javascript" src="./_js/Conversions.js"></script>
+		<script type="text/javascript" src="./_js/Register.js"></script>
+		<script type="text/javascript" src="./_js/Flag.js"></script>
+		<script type="text/javascript" src="./_js/Mem.js"></script>
+		<script type="text/javascript" src="./_js/Mirac.js"></script>
+		<script type="text/javascript" src="./_js/ALU.js"></script>
+		<script type="text/javascript" src="./_js/Ins.js"></script>
+		<script type="text/javascript" src="./_js/Opcode.js"></script>
+		<script type="text/javascript" src="./_js/Opcodes.js"></script>
+		
+		<script type="text/javascript" src="./_js/Assembler.js"></script>
+		<script type="text/javascript" src="./_js/Config.js"></script>
+		<script type="text/javascript" src="./_js/Control.js"></script>
+		<script type="text/javascript" src="./_js/Editor.js"></script>
+		<script type="text/javascript" src="./_js/Emulator.js"></script>
+	</body>
+</html>
