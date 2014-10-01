@@ -1,0 +1,39 @@
+.e-comment{
+	color: #55CC44;
+}
+
+.e-valid-instruction{
+	color: #0000FF;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.e-invalid-instruction{
+	color: #FF0000;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.e-label{
+	color: #FFAA00;
+	font-style: italic;
+}
+
+.e-define-label{
+	color: #FFAA00;
+	text-decoration: underline;
+}
+
+.e-octal{
+	color: #FF00FF;
+	font-weight: bold;
+}
+
+.e-binary{
+	color: #00AAFF;
+	font-weight: bold;
+}
+
+.e-line{
+	display: block;
+}

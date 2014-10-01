@@ -1,4 +1,5 @@
 @import url(openSansFont/OpenSans.css);
+@import url(editor.css);
 
 *{
 	border: none;
@@ -182,6 +183,7 @@ hr{
 	background-color: transparent;
 	color: rgba(0, 0, 0, 0.1);
 	padding: 5px;
+	z-index: 10000;
 }
 
 #romInput #romDisplay{
@@ -196,13 +198,15 @@ hr{
 }
 
 #romInput #biggerButton{
+	text-align: center;
 	position: absolute;
 	right: 1px;
 	top: 1px;
 	width: 16px;
 	height: 16px;
-	padding: 0px;
+	padding: 1px;
 	line-height: 0px;
+	box-sizing: border-box;
 }
 
 #romInput #romControls{
@@ -213,7 +217,7 @@ hr{
 #romInput.bigger{
 	margin-left: -502px;
 	width: 1009px;
-	margin-top: -40px;
+	margin-top: -41px;
 	height: 95%;
 }
 
@@ -370,42 +374,6 @@ hr{
 #rightpanel #frequency{
 	text-align: right;
 	width: 153px;
-}
-
-.e-comment{
-	color: #55CC44;
-}
-
-.e-valid-instruction{
-	color: #0000FF;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.e-invalid-instruction{
-	color: #FF0000;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.e-label{
-	color: #FFAA00;
-	font-style: italic;
-}
-
-.e-define-label{
-	color: #FFAA00;
-	text-decoration: underline;
-}
-
-.e-octal{
-	color: #FF00FF;
-	font-weight: bold;
-}
-
-.e-binary{
-	color: #00AAFF;
-	font-weight: bold;
 }
 
 

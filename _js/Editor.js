@@ -3,25 +3,25 @@
 */
 
 function Editor(
-	div				// Div where syntax highlighted text will be displayed
-	,textArea		// TextArea for input
+	 displayElement		// Element where syntax highlighted text will be displayed
+	,inputElement		// Element for input, placed over displayElement
 ){
-	var oldContent = textArea.textContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
+	var oldContent = inputElement.textContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
 	var selectionOffset = 0;
 	var selectionLength = 0;
 	
 	function init(){
-		var newContent = textArea.textContent;
+		var newContent = inputElement.textContent;
 		newContent = newContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
 		
 		var i = newContent.length;
 		while(i--){
 			updateLine(i, newContent[i]);
-		}			
+		}
 	}
 	
 	function onEdit(){
-		var newContent = textArea.textContent;
+		var newContent = inputElement.textContent;
 		newContent = newContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
 		
 		var i = newContent.length;
@@ -37,19 +37,21 @@ function Editor(
 			}
 		}
 		
-		oldContent = textArea.textContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
+		oldContent = inputElement.textContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
 		
 	}
 	
 	function onScroll(){
-		div.scrollTop = textArea.scrollTop;
+		displayElement.scrollTop = inputElement.scrollTop;
 	}
 	
 	function updateLine(lineNr, line){
 		
 		code = line.split("//")[0];
 		comment = line.substring(code.length, line.length);
-		comment = '<span class="e-comment">'+comment+"</span>";
+		if(comment.length > 0){
+			comment = '<span class="e-comment">'+comment+"</span>";
+		}
 		
 		code = code.split(" ");
 		var c = code.length;
@@ -58,33 +60,43 @@ function Editor(
 			if(/^([a-z]*)$/i.test(fragment) === true && fragment.length > 0){	 // check if alphabetic
 				var oct;
 				oct = Opcodes.mnemonicToOct(fragment);
-				if(oct == ""){
+				if(oct == ""){	// Invalid instruction
 					code[c] = '<span class="e-invalid-instruction" title="Invalid instruction">'+fragment+"</span>";
-				} else {
+				} else {		// Valid instruction
 					code[c] = '<span class="e-valid-instruction" title="Opcode '+oct+'">'+fragment+"</span>";
 				}
-			} else if(fragment.substring(0, 1) == "$"){
-				if(fragment.substring(fragment.length-1, fragment.length) == ":"){
+			} else if(fragment.substring(0, 1) == "$"){	// Label
+				if(fragment.substring(fragment.length-1, fragment.length) == ":"){	// Label definition
 					code[c] = '<span class="e-define-label">'+fragment+"</span>";
-				} else {
+				} else {	// Label call
 					code[c] = '<span class="e-label">'+fragment+"</span>";
 				}
-			} else if(fragment.substring(0, 1) == "#"){
+			} else if(fragment.substring(0, 1) == "#"){	// Binary value
 				code[c] = '<span class="e-binary" title="Octal: '+binToOct(fragment)+'">'+fragment+"</span>";
-			} else if(/^([0-7]*)$/.test(fragment) === true && fragment.length > 0){
+			} else if(/^([0-7]*)$/.test(fragment) === true && fragment.length > 0){	// Octal value
 				code[c] = '<span class="e-octal" title="Binary: '+octToBin(fragment)+'">'+fragment+"</span>";
 			}
 		}
 		
-		code = code.join(" ");
+		code = code.join();
 		
 		var newLine = code + comment;
-		var content = div.innerHTML.split("\n");
+		newLine = '<div class="e-line">'+newLine+'</div><!---->';
+		var content = displayElement.innerHTML.split("<!---->");
+		if(content.length < lineNr){
+			for(var i = 0; i <= lineNr; i++){
+				if(content[i] == null || typeof(content[i] == undefined)){
+					content[i] = '<div class="e-line"></div><!---->';
+				}
+			}
+		}
 		content[lineNr] = newLine;
-		div.innerHTML = content.join("\n");
+		content = content.join("");
+		console.log(content);
+		displayElement.innerHTML = content;
 	}
 	
-	textArea.addEventListener('keydown',function(e) {
+	inputElement.addEventListener('keydown',function(e) {
 		if(e.keyCode === 9) { // tab was pressed
 			// get caret position/selection
 			var start = this.selectionStart;
