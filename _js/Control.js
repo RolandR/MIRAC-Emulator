@@ -12,7 +12,7 @@ var Control = {
 		Control.loadToRam();
 	}
 	,loadToRam: function(){
-		var rom = document.getElementById('romText').textContent;
+		var rom = document.getElementById('romText').value;
 		
 		rom = Control.assemble(rom);
 		

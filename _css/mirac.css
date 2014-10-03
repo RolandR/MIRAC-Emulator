@@ -172,18 +172,23 @@ hr{
 	border-bottom: 1px #000000 solid;
 }
 
-#romInput #romText{
+#romInput #romTextContainer{
 	position: absolute;
 	display: block;
 	top: 30px;
 	left: 5px;
 	right: 5px;
 	bottom: 35px;
-	box-sizing: border-box;
+	z-index: 10000;
+}
+
+#romInput #romText{
+	height: 100%;
+	width: 100%;
+	display: block;
 	background-color: transparent;
 	color: rgba(0, 0, 0, 0.1);
 	padding: 5px;
-	z-index: 10000;
 }
 
 #romInput #romDisplay{

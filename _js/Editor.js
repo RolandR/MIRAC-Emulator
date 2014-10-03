@@ -6,38 +6,33 @@ function Editor(
 	 displayElement		// Element where syntax highlighted text will be displayed
 	,inputElement		// Element for input, placed over displayElement
 ){
-	var oldContent = inputElement.textContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
-	var selectionOffset = 0;
-	var selectionLength = 0;
+	var oldContent = "";
+
+	var markup = [];
 	
 	function init(){
-		var newContent = inputElement.textContent;
-		newContent = newContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
-		
-		var i = newContent.length;
-		while(i--){
-			updateLine(i, newContent[i]);
-		}
+		onEdit();
 	}
 	
 	function onEdit(){
-		var newContent = inputElement.textContent;
-		newContent = newContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
+		var newContent = inputElement.value;
+		//newContent = newContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
+		newContent = newContent.split("\n");
 		
 		var i = newContent.length;
-		if(oldContent.length == newContent.length){
-			while(i--){
-				if(oldContent[i] !== newContent[i]){
-					updateLine(i, newContent[i]);
-				}
-			}
-		} else {
-			while(i--){
-				updateLine(i, newContent[i]);
+		if(i < oldContent.length){
+			i = oldContent.length;
+		}
+
+		while(i--){
+			if(oldContent[i] !== newContent[i]){
+				markup[i] = getMarkup(newContent[i]);
 			}
 		}
 		
-		oldContent = inputElement.textContent.replace(/\<br( \/)?\>/g, "\n").split("\n");
+		displayElement.innerHTML = markup.join("<br />");
+		
+		oldContent = inputElement.value.split("\n");
 		
 	}
 	
@@ -45,7 +40,11 @@ function Editor(
 		displayElement.scrollTop = inputElement.scrollTop;
 	}
 	
-	function updateLine(lineNr, line){
+	function getMarkup(line){
+		
+		if(line == undefined){
+			return null;
+		}
 		
 		code = line.split("//")[0];
 		comment = line.substring(code.length, line.length);
@@ -78,22 +77,25 @@ function Editor(
 			}
 		}
 		
-		code = code.join();
+		code = code.join(" ");
 		
 		var newLine = code + comment;
-		newLine = '<div class="e-line">'+newLine+'</div><!---->';
-		var content = displayElement.innerHTML.split("<!---->");
+
+		return newLine;
+		
+		//newLine = '<div class="e-line">'+newLine+'</div>';
+		/*var content = displayElement.innerHTML.split("\n");
 		if(content.length < lineNr){
 			for(var i = 0; i <= lineNr; i++){
 				if(content[i] == null || typeof(content[i] == undefined)){
-					content[i] = '<div class="e-line"></div><!---->';
+					content[i] = '';
 				}
 			}
 		}
 		content[lineNr] = newLine;
-		content = content.join("");
-		console.log(content);
-		displayElement.innerHTML = content;
+		content = content.join("\n");
+		console.log(content.replace(/\n/g, "\n\\n"));
+		displayElement.innerHTML = content;*/
 	}
 	
 	inputElement.addEventListener('keydown',function(e) {

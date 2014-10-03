@@ -80,17 +80,17 @@
 				<h2><abbr title="MIDAS - Mirac Direct Assembly">MIDAS</abbr> Assembly Input<button id="biggerButton" onclick="Control.toggleEditorSize();">+</button></h2>
 				<div id="#romLines">
 				</div>
-				<div
-					id="romText"
-					contenteditable="true"
-					spellcheck="false"
-					oninput="setTimeout(editor.onEdit)"
-					onkeydown="setTimeout(editor.onEdit);"
-					onkeyup="editor.onEdit();"
-					onpaste="setTimeout(editor.onEdit);"
-					onmouseup="editor.onEdit();"
-					onscroll="editor.onScroll();"
-				>// Sample program demonstrating the stack and other
+				<div id="romTextContainer"><!--TextAreas are bugged-->
+					<textarea
+						id="romText"
+						spellcheck="false"
+						oninput="setTimeout(editor.onEdit)"
+						onkeydown="setTimeout(editor.onEdit);"
+						onkeyup="editor.onEdit();"
+						onpaste="setTimeout(editor.onEdit);"
+						onmouseup="editor.onEdit();"
+						onscroll="editor.onScroll();"
+					>// Sample program demonstrating the stack and other
 // features of MIRAC
 
 $start:
@@ -117,7 +117,8 @@ $recursion: 000
 
 
 
-</div>
+</textarea>
+				</div>
 				<div id="romDisplay" contenteditable="true"></div>
 				<div id="romControls">
 					<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button>
