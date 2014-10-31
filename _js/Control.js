@@ -121,11 +121,11 @@ var Control = {
 		Reg.pc.set(newPC);
 	}
 	,toggleEditorSize: function(){
-		if(document.getElementById("romInput").className == ""){
-			document.getElementById("romInput").className = "bigger";
+		if(document.getElementById("romInput").className == "panel"){
+			document.getElementById("romInput").className = "panel bigger";
 			document.getElementById("biggerButton").innerHTML = "-";
 		} else {
-			document.getElementById("romInput").className = "";
+			document.getElementById("romInput").className = "panel";
 			document.getElementById("biggerButton").innerHTML = "+";
 		}
 	}
