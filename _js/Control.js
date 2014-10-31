@@ -123,10 +123,8 @@ var Control = {
 	,toggleEditorSize: function(){
 		if(document.getElementById("romInput").className == "panel"){
 			document.getElementById("romInput").className = "panel bigger";
-			document.getElementById("biggerButton").innerHTML = "-";
 		} else {
 			document.getElementById("romInput").className = "panel";
-			document.getElementById("biggerButton").innerHTML = "+";
 		}
 	}
 }

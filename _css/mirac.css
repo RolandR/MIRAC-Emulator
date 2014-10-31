@@ -89,38 +89,46 @@ hr{
 	margin: 10px auto;
 }
 
-.panel{
+.panel,
+.register{
 	background-color: #F8F8FF;
-	border: 1px #000000 solid;
+	border: 1px rgba(0, 0, 0, 0.8) solid;
 	display: inline-block;
+	overflow: hidden;
 }
 
-.panel h2{
+.panel h2,
+.register h2{
 	display: block;
 	width: 100%;
 	background-color: #EEEEFF;
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
 	padding-left: 5px;
-	border-bottom: 1px #000000 solid;
+	padding-top: 3px;
+	border-bottom: 1px rgba(0, 0, 0, 0.8) solid;
+}
+
+.register h2{
+	padding-left: 0px;
 }
 
 .register{
-	display: inline-block;
-	border: 1px #000000 solid;
 	width: 120px;
 	text-align: center;
 	margin-top: 5px;
 	margin-left: 5px;
-	background-color: #EEEEFF;
 }
 
 .registerValue{
-	border-top: 1px #000000 solid;
-	margin-top: 1px;
+	padding-top: 3px;
 	height: 18px;
-	background-color: #F8F8FF;
 	transition: background-color;
 	transition-timing-function: ease-out;
 	transition-duration: 250ms;
+}
+
+.registerValue:not(:first-of-type) {
+	border-top: 1px rgba(0, 0, 0, 0.8) solid;
 }
 
 .registerValue.read,
@@ -157,7 +165,6 @@ hr{
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 5px;
-	margin-top: 5px;
 	width: 375px;
 	text-align: center;
 	padding-top: 10px;
@@ -170,10 +177,8 @@ hr{
 	position: absolute;
 	vertical-align: top;
 	margin-left: 6px;
-	margin-top: 5px;
 	width: 501px;
-	height: 358px;
-	overflow: hidden;
+	height: 397px;
 	
 	transition: margin-left, width, margin-top, height;
 	transition-duration: 200ms;
@@ -211,16 +216,28 @@ hr{
 }
 
 #romInput #biggerButton{
-	text-align: center;
+	padding: 0px;
 	position: absolute;
 	right: 1px;
 	top: 1px;
-	width: 16px;
-	height: 16px;
-	padding: 1px;
-	line-height: 0px;
+	width: 19px;
+	height: 19px;
+	line-height: 13px;
 	box-sizing: border-box;
+	background-image: url(../_media/expand.svg);
+	background-color: #FCFCFC;
+	background-size: 15px 15px;
+	background-position: 1px 1px;
+	background-repeat: no-repeat;
 }
+
+#romInput.bigger #biggerButton{
+	background-image: url(../_media/shrink.svg);
+ }
+
+ #romInput #biggerButton:hover{
+	background-color: #FFFFFF;
+ }
 
 #romInput #romControls{
 	position: absolute;
@@ -230,7 +247,7 @@ hr{
 #romInput.bigger{
 	margin-left: -502px;
 	width: 1009px;
-	margin-top: -41px;
+	margin-top: -53px;
 	height: 95%;
 }
 
@@ -246,9 +263,7 @@ hr{
 #ram{
 	vertical-align: top;
 	margin-left: 5px;
-	margin-top: 5px;
 	width: 627px;
-	overflow: hidden;
 }
 
 .memtable{
@@ -277,13 +292,11 @@ hr{
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 5px;
-	margin-top: 5px;
 }
 
 .rightPanelDiv{
 	display: block;
 	width: 375px;
-	overflow: hidden;
 	margin-bottom: 5px;
 }
 
@@ -293,6 +306,10 @@ hr{
 
 #moreRegistersPanel div{
 	display: block;
+}
+
+#moreRegistersPanel :first-child{
+	margin-top: 0px;
 }
 
 #flagtable{
@@ -309,6 +326,10 @@ hr{
 	transition: background-color;
 	transition-timing-function: ease-out;
 	transition-duration: 250ms;
+}
+
+#control{
+	height: 173px;
 }
 
 #control button{
