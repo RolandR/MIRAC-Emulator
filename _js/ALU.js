@@ -56,12 +56,54 @@ var ALU = {
 		return result;
 	}
 	
-	,and: function(a, b, useFlags){
-		var result;
-		var carry;
+	,subtract: function(a, b, useFlags){
+		return(
+			this.add(
+				a,
+				this.twosComplement(b, false),
+				useFlags
+			)
+		);
+	}
+	
+	,multiply: function(a, b, useFlags){
+		var aDec = binToDec(a);
+		var result = "00000000";
+		while(aDec--){
+			result = this.add(
+				b,
+				result,
+				false
+			);
+		}
+		
+		return result;
+	}
+		
+	,twosComplement: function(a, useFlags){
+		return(
+			this.add(
+				 this.not(a, false)
+				,"00000001"
+				,useFlags
+			)
+		);
+	}
+	
+	,not: function(a, useFlags){
+		var result = "";
+		
+		a = a.split("");
+		
+		for(var i in a){
+			if(a[i] == "1"){
+				result += "0";
+			} else {
+				result += "1";
+			}
+		}
 		
 		if(useFlags){
-			Flags.c.set(carry);
 			Flags.n.set(result.charAt(0));
 			
 			if(result == "00000000"){
@@ -74,15 +116,207 @@ var ALU = {
 		return result;
 	}
 	
-			// ,new Opcode('060', 'ando', Ins.ando)
-		// ,new Opcode('061', 'orop', Ins.orop)
-		// ,new Opcode('062', 'xoro', Ins.xoro)
-		// ,new Opcode('063', 'nand', Ins.nand)
-		// ,new Opcode('064', 'noro', Ins.noro)
-		// ,new Opcode('065', 'xnor', Ins.xnor)
-		// ,new Opcode('066', 'nota', Ins.nota)
-		// ,new Opcode('067', 'rroa', Ins.rroa)
-		// ,new Opcode('070', 'rsha', Ins.rsha)
-		// ,new Opcode('071', 'lroa', Ins.lroa)
-		// ,new Opcode('072', 'lsha', Ins.lsha)
+	,and: function(a, b, useFlags){
+		var result = "";
+		
+		a = a.split("");
+		b = b.split("");
+		
+		for(var i in a){
+			if(a[i] == "1" && b[i] == "1"){
+				result += "1";
+			} else {
+				result += "0";
+			}
+		}
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
+	
+	,nand: function(a, b, useFlags){
+		return(
+			this.not(
+				 this.and(a, b, false)
+				,useFlags
+			)
+		);
+	}
+	
+	,or: function(a, b, useFlags){
+		var result = "";
+		
+		a = a.split("");
+		b = b.split("");
+		
+		for(var i in a){
+			if(a[i] == "1" || b[i] == "1"){
+				result += "1";
+			} else {
+				result += "0";
+			}
+		}
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
+	
+	,nor: function(a, b, useFlags){
+		return(
+			this.not(
+				 this.or(a, b, false)
+				,useFlags
+			)
+		);
+	}
+	
+	,xor: function(a, b, useFlags){
+		var result = "";
+		
+		a = a.split("");
+		b = b.split("");
+		
+		for(var i in a){
+			if((a[i] == "1" && b[i] == "0") || (a[i] == "0" && b[i] == "1")){
+				result += "1";
+			} else {
+				result += "0";
+			}
+		}
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
+	
+	,xnor: function(a, b, useFlags){
+		return(
+			this.not(
+				 this.xor(a, b, false)
+				,useFlags
+			)
+		);
+	}
+	
+	// abcd -> dabc
+	,rotateRight: function(a, useFlags){
+		var result = "";
+		
+		result += a.substring(a.length -1);
+		result += a.substring(0, a.length -1);
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
+	
+	// abcd -> 0abc
+	,shiftRight: function(a, useFlags){
+		var result = "";
+		
+		var carry = a.substring(a.length -1);
+		
+		result += "0";
+		result += a.substring(0, a.length -1);
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			Flags.c.set(carry);
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
+	
+		// abcd -> bcda
+	,rotateLeft: function(a, useFlags){
+		var result = "";
+		
+		result += a.substring(1, a.length);
+		result += a.substring(0, 1);
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
+	
+	// abcd -> bcd0
+	,shiftLeft: function(a, useFlags){
+		var result = "";
+		
+		var carry = a.substring(0, 1);
+		
+		result += a.substring(1, a.length);
+		result += "0";
+		
+		if(useFlags){
+			Flags.n.set(result.charAt(0));
+			Flags.c.set(carry);
+			
+			if(result == "00000000"){
+				Flags.z.set("1");
+			} else {
+				Flags.z.set("0");
+			}	
+		}
+		
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+

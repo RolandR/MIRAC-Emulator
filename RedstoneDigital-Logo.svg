@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="175.40746"
+   height="61.96875"
+   id="svg3075">
+  <defs
+     id="defs3077" />
+  <metadata
+     id="metadata3080">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-197.99794,-375.65625)"
+     id="layer1">
+    <g
+       transform="translate(123.74021,-51.874999)"
+       id="g3894">
+      <g
+         id="g3886">
+        <path
+           d="m 121.72339,423.54224 a 10.354064,10.354064 0 1 1 -20.70813,0 10.354064,10.354064 0 1 1 20.70813,0 z"
+           transform="translate(2.6319904,31.802345)"
+           id="path3891"
+           style="fill:#ff7e08;fill-opacity:1;stroke:none" />
+        <path
+           d="m 121.72339,423.54224 a 10.354064,10.354064 0 1 1 -20.70813,0 10.354064,10.354064 0 1 1 20.70813,0 z"
+           transform="matrix(0.39024393,0,0,0.39024393,70.540112,290.05979)"
+           id="path3893"
+           style="fill:#000000;fill-opacity:1;stroke:none" />
+      </g>
+      <path
+         d="m 103.58654,440.57109 13.28781,0 c 9.53325,0 8.78499,-6.27236 8.78499,-8.36177"
+         id="path3899"
+         style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <g
+         id="g3890">
+        <path
+           d="m 121.72339,423.54224 a 10.354064,10.354064 0 1 1 -20.70813,0 10.354064,10.354064 0 1 1 20.70813,0 z"
+           transform="matrix(-1,0,0,1,199.57409,31.802345)"
+           id="path3915"
+           style="fill:#ff7e08;fill-opacity:1;stroke:none" />
+        <path
+           d="m 121.72339,423.54224 a 10.354064,10.354064 0 1 1 -20.70813,0 10.354064,10.354064 0 1 1 20.70813,0 z"
+           transform="matrix(-0.39024393,0,0,0.39024393,131.66597,290.05979)"
+           id="path3917"
+           style="fill:#000000;fill-opacity:1;stroke:none" />
+      </g>
+      <path
+         d="m 98.619535,440.57109 -13.287805,0 c -9.533249,0 -8.784989,-6.27236 -8.784989,-8.36177"
+         id="path3919"
+         style="fill:none;stroke:#000000;stroke-width:4.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         d="m 96.039226,470.62906 c -1.673634,-4.88144 2.900657,-5.29985 5.043494,-5.29985 2.4387,0 6.71714,0.41841 5.0435,5.29985 -1.67364,4.88143 -5.0435,16.4574 -5.0435,16.4574 0,0 -3.369858,-11.57597 -5.043494,-16.4574 z"
+         id="path3925"
+         style="fill:#000000;fill-opacity:1;stroke:none" />
+      <path
+         d="m 143.59883,427.54075 0,61.96429"
+         id="path3933"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         id="g3880">
+        <text
+           x="157.32143"
+           y="453.07657"
+           id="text3960"
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"><tspan
+             x="157.32143"
+             y="453.07657"
+             id="tspan3964"
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Verdana;-inkscape-font-specification:Verdana">Redstone</tspan></text>
+        <text
+           x="157.32143"
+           y="475.03366"
+           id="text3972"
+           xml:space="preserve"
+           style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"><tspan
+             x="157.32143"
+             y="475.03366"
+             id="tspan3974"
+             style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Verdana;-inkscape-font-specification:Verdana">Digital</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

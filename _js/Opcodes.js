@@ -17,7 +17,11 @@ var Opcodes = {
 	,runByBin: function(bin){
 		for(var i in Opcodes.ops){
 			if(Opcodes.ops[i].bin == bin){
-				Opcodes.ops[i].run();
+				try{
+					Opcodes.ops[i].run();
+				} catch(e){
+					console.error("Error: "+Opcodes.ops[i].mnemonic);
+				}
 				return true;
 			}
 		}
@@ -80,16 +84,19 @@ var Opcodes = {
 		,new Opcode('055', 'pulf', Ins.pulf)
 		,new Opcode('056', 'jsrt', Ins.jsrt)
 		,new Opcode('057', 'rsrt', Ins.rsrt)
-		,new Opcode('060', 'anda', Ins.anda)
-		,new Opcode('061', 'orac', Ins.orac)
-		,new Opcode('062', 'xora', Ins.xora)
+		,new Opcode('060', 'ando', Ins.ando)
+		,new Opcode('061', 'orop', Ins.orop)
+		,new Opcode('062', 'xoro', Ins.xoro)
 		,new Opcode('063', 'nand', Ins.nand)
-		,new Opcode('064', 'nora', Ins.nora)
+		,new Opcode('064', 'noro', Ins.noro)
 		,new Opcode('065', 'xnor', Ins.xnor)
 		,new Opcode('066', 'nota', Ins.nota)
 		,new Opcode('067', 'rroa', Ins.rroa)
 		,new Opcode('070', 'rsha', Ins.rsha)
 		,new Opcode('071', 'lroa', Ins.lroa)
 		,new Opcode('072', 'lsha', Ins.lsha)
+		,new Opcode('073', 'subt', Ins.subt)
+		,new Opcode('074', 'mult', Ins.mult)
+		,new Opcode('075', 'twco', Ins.twco)
 	]
 }

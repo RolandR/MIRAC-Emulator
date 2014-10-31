@@ -12,6 +12,7 @@ function Register(id){
 	function set(v){
 		value = v.substring(v.length - 8, v.length);
 		document.getElementById("r"+id).innerHTML = binToOct(value);
+		document.getElementById("r"+id).title = "Dec:\t"+binToDec(value) + " \nBin:\t"+ value;
 		
 		document.getElementById("r"+id).className += ' written';
 		setTimeout(function(){document.getElementById("r"+id).className = "registerValue"}, 10);

@@ -89,6 +89,20 @@ hr{
 	margin: 10px auto;
 }
 
+.panel{
+	background-color: #F8F8FF;
+	border: 1px #000000 solid;
+	display: inline-block;
+}
+
+.panel h2{
+	display: block;
+	width: 100%;
+	background-color: #EEEEFF;
+	padding-left: 5px;
+	border-bottom: 1px #000000 solid;
+}
+
 .register{
 	display: inline-block;
 	border: 1px #000000 solid;
@@ -134,6 +148,11 @@ hr{
 	padding-bottom: 14px;
 }
 
+#rdLogoContainer{
+	text-align: right;
+	margin-top: 10px;
+}
+
 #about{
 	display: inline-block;
 	vertical-align: top;
@@ -149,27 +168,16 @@ hr{
 
 #romInput{
 	position: absolute;
-	display: inline-block;
 	vertical-align: top;
 	margin-left: 6px;
 	margin-top: 5px;
 	width: 501px;
 	height: 358px;
-	background-color: #F8F8FF;
-	border: 1px #000000 solid;
 	overflow: hidden;
 	
 	transition: margin-left, width, margin-top, height;
 	transition-duration: 200ms;
 	transition-timing-function: ease-in-out;
-}
-
-#romInput h2{
-	display: block;
-	width: 100%;
-	background-color: #EEEEFF;
-	padding-left: 5px;
-	border-bottom: 1px #000000 solid;
 }
 
 #romInput #romTextContainer{
@@ -236,22 +244,11 @@ hr{
 }
 
 #ram{
-	display: inline-block;
 	vertical-align: top;
 	margin-left: 5px;
 	margin-top: 5px;
 	width: 627px;
-	background-color: #F8F8FF;
-	border: 1px #000000 solid;
 	overflow: hidden;
-}
-
-#ram h2{
-	display: block;
-	width: 100%;
-	background-color: #EEEEFF;
-	padding-left: 5px;
-	border-bottom: 1px #000000 solid;
 }
 
 .memtable{
@@ -286,18 +283,8 @@ hr{
 .rightPanelDiv{
 	display: block;
 	width: 375px;
-	background-color: #F8F8FF;
-	border: 1px #000000 solid;
 	overflow: hidden;
 	margin-bottom: 5px;
-}
-
-.rightPanelDiv h2{
-	display: block;
-	width: 100%;
-	background-color: #EEEEFF;
-	padding-left: 5px;
-	border-bottom: 1px #000000 solid;
 }
 
 #moreRegistersPanel{
@@ -381,6 +368,9 @@ hr{
 	width: 153px;
 }
 
+#leftpanel{
+	display: inline-block;
+}
 
 
 

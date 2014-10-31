@@ -45,6 +45,24 @@ var Ins = {
 		// ADDC | -
 		Reg.a.set(ALU.add(Reg.a.get(), Reg.op.get(), true));
 	}
+	,subt: function(){
+		// Subtract operand from accumulator.
+		// SUBO | -
+		
+		Reg.a.set(ALU.subtract(Reg.a.get(), Reg.op.get(), true));
+	}
+	,mult: function(){
+		// Multiply accumulator with operand.
+		// MULT | -
+		
+		Reg.a.set(ALU.multiply(Reg.a.get(), Reg.op.get(), true));
+	}
+	,twco: function(){
+		// Calculate two's compenent of accumulator.
+		// TWCO | -
+		
+		Reg.a.set(ALU.twosComplement(Reg.a.get(), true));
+	}
 	,opra: function(){
 		// Copy accumulator to operand register.
 		// OPRA | -
@@ -344,20 +362,66 @@ var Ins = {
 		// Bitwise AND of accumulator and operand register
 		// ANDO | -
 		
-		//Reg.a.set(ALU.and());
+		Reg.a.set(ALU.and(Reg.a.get(), Reg.op.get(), true));
 	}
-	
-	
-	
-		// ,new Opcode('060', 'ando', Ins.ando)
-		// ,new Opcode('061', 'orop', Ins.orop)
-		// ,new Opcode('062', 'xoro', Ins.xoro)
-		// ,new Opcode('063', 'nand', Ins.nand)
-		// ,new Opcode('064', 'noro', Ins.noro)
-		// ,new Opcode('065', 'xnor', Ins.xnor)
-		// ,new Opcode('066', 'nota', Ins.nota)
-		// ,new Opcode('067', 'rroa', Ins.rroa)
-		// ,new Opcode('070', 'rsha', Ins.rsha)
-		// ,new Opcode('071', 'lroa', Ins.lroa)
-		// ,new Opcode('072', 'lsha', Ins.lsha)
+	,nand: function(){
+		// Bitwise NAND of accumulator and operand register
+		// NAND | -
+		
+		Reg.a.set(ALU.nand(Reg.a.get(), Reg.op.get(), true));
+	}
+	,orop: function(){
+		// Bitwise OR of accumulator and operand register
+		// OROP | -
+		
+		Reg.a.set(ALU.or(Reg.a.get(), Reg.op.get(), true));
+	}
+	,noro: function(){
+		// Bitwise NOR of accumulator and operand register
+		// NORO | -
+		
+		Reg.a.set(ALU.nor(Reg.a.get(), Reg.op.get(), true));
+	}
+	,xoro: function(){
+		// Bitwise XOR of accumulator and operand register
+		// XORO | -
+		
+		Reg.a.set(ALU.xor(Reg.a.get(), Reg.op.get(), true));
+	}
+	,xnor: function(){
+		// Bitwise XNOR of accumulator and operand register
+		// XNOR | -
+		
+		Reg.a.set(ALU.xnor(Reg.a.get(), Reg.op.get(), true));
+	}
+	,nota: function(){
+		// Bitwise inversion of accumulator
+		// NOTA | -
+		
+		Reg.a.set(ALU.not(Reg.a.get(), true));
+	}
+	,rroa: function(){
+		// Rotate right of accumulator - abcd -> dabc
+		// RROA | -
+		
+		Reg.a.set(ALU.rotateRight(Reg.a.get(), true));
+	}
+	,rsha: function(){
+		// Right shift of accumulator - abcd -> 0abc
+		// RSHA | -
+		
+		Reg.a.set(ALU.shiftRight(Reg.a.get(), true));
+	}
+	,lroa: function(){
+		// Rotate left of accumulator - abcd -> bcda
+		// LROA | -
+		
+		Reg.a.set(ALU.rotateLeft(Reg.a.get(), true));
+	}
+	,lsha: function(){
+		// Left shift of accumulator - abcd -> bcd0
+		// LSHA | -
+		
+		Reg.a.set(ALU.shiftLeft(Reg.a.get(), true));
+	}
 }
