@@ -98,5 +98,8 @@ var Opcodes = {
 		,new Opcode('073', 'subt', Ins.subt)
 		,new Opcode('074', 'mult', Ins.mult)
 		,new Opcode('075', 'twco', Ins.twco)
+		,new Opcode('076', 'inca', Ins.inca)
+		,new Opcode('077', 'deca', Ins.deca)
+		,new Opcode('100', 'comp', Ins.comp)
 	]
 }

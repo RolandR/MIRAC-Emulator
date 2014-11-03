@@ -57,6 +57,18 @@ var Ins = {
 		
 		Reg.a.set(ALU.multiply(Reg.a.get(), Reg.op.get(), true));
 	}
+	,inca: function(){
+		// Increment accumulator by 1
+		// INCA | -
+		
+		Reg.a.set(ALU.add(Reg.a.get(), "00000001", true));
+	}
+	,deca: function(){
+		// Decrement accumulator by 1
+		// DECA | -
+		
+		Reg.a.set(ALU.subtract(Reg.a.get(), "00000001", true));
+	}
 	,twco: function(){
 		// Calculate two's compenent of accumulator.
 		// TWCO | -
@@ -67,6 +79,13 @@ var Ins = {
 		// Copy accumulator to operand register.
 		// OPRA | -
 		Reg.op.set(Reg.a.get());
+	}
+	,comp: function(){
+		// Compare accumulator to value and set flags accordingly, but don't touch accumulator.
+		// COMP | #
+		
+		Ins.loadArgumentByte();
+		ALU.subtract(Reg.a.get(), Reg.ar.get(), true);
 	}
 	,brcz: function(){
 		// Branch to location specified in next byte if carry flag = 0

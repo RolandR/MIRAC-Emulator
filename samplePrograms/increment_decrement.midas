@@ -1,0 +1,10 @@
+$start:
+inca
+comp 020
+brnz $subtract
+jmpi $start
+$subtract:
+deca
+comp 001
+brns $start
+jmpi $subtract
