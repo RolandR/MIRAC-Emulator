@@ -34,7 +34,7 @@ var Control = {
 		
 	}
 	
-	,clearRam: function(){
+	,hardReset: function(){
 		Control.reset();
 		for(var i = 0; i < mem.getSize(); i++){
 			mem.write();

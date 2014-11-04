@@ -37,6 +37,7 @@ var Reg = {
 		Reg.pabr.set("00000000");
 		Reg.pdin.set("00000000");
 		Reg.pdout.set("00000000");
+		Reg.sp.set("00000000");
 		for(var i in Reg.gp){
 			Reg.gp[i].set("00000000");
 		}

@@ -65,6 +65,14 @@ var Assembler = new function(){
 					lines[i].splice(l, 1);
 					continue;
 				}
+				
+				// Translate printable ascii chars (syntax: 'a')
+				// to octal
+				if(/'[ -~]'/g.test(lines[i][l]) === true){
+					var character = lines[i][l].charCodeAt(1);
+					console.log(i, character);
+					lines[i][l] = decToOct(character);
+				}
 			}
 		}
 		

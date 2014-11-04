@@ -148,7 +148,7 @@ $recursion: 000
 				<button id="run" class="runButton" onclick="Control.toggleRun()">Start</button><!-- Maaaaan, why does html interpret line breaks? Even for inline elements, that's somewhat silly.
 			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step.">Step</button><!--
 			 --><button id="resetpc" onclick="Control.reset();" title="Clears registers and flags.">Reset to start</button><!--
-			 --><button id="resetmem" onclick="Control.clearRam();" title="Clears memory and all registers and flags.">Hard reset</button>
+			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags.">Hard reset</button>
 				<hr />
 				<span class="controlValueLabel">Cycle interval: </span><!--
 			 --><input class="controlValue" id="cycleInterval" type="number" value="200" /><!--

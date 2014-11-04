@@ -64,6 +64,13 @@ function Editor(
 				} else {		// Valid instruction
 					code[c] = '<span class="e-valid-instruction" title="Opcode '+oct+'">'+fragment+"</span>";
 				}
+			} else if(fragment.substring(0, 1) == "'"){
+				if(/'[ -~]'/g.test(fragment) === false){	// Invalid character
+					code[c] = '<span class="e-invalid-char" title="Invalid character">'+fragment+"</span>";
+				} else {		// Valid character
+					var oct = fragment.charCodeAt(1);
+					code[c] = '<span class="e-valid-char" title="Octal: '+oct+'">'+fragment+"</span>";
+				}
 			} else if(fragment.substring(0, 1) == "$"){	// Label
 				if(fragment.substring(fragment.length-1, fragment.length) == ":"){	// Label definition
 					code[c] = '<span class="e-define-label">'+fragment+"</span>";
