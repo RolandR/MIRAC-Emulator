@@ -143,7 +143,17 @@ $recursion: 000
 				</table>
 			</div><!--br /><div id="monitor" class="panel">
 				Monitor!
-			</div--></div><div id="rightpanel"><div id="control" class="rightPanelDiv panel">
+			</div--><br /><div id="octalDisplay" class="panel">
+				<h2 title="Device Address: 020">Oct Display</h2>
+				<div class="displayContainer">
+					<div class="displaySegment" id="displaySegment0"></div><div class="displaySegment" id="displaySegment1"></div><div class="displaySegment" id="displaySegment2"></div>
+				</div>
+			</div><div id="dotMatrix" class="panel">
+				<h2 title="Device Addresses: 030 - 034">Dot Matrix</h2>
+				<div class="dotMatrixContainer">
+					<canvas id="dotMatrixCanvas" height="160" width="160"></canvas>
+				</div>
+			</div></div><div id="rightpanel"><div id="control" class="rightPanelDiv panel">
 				<h2>Control</h2>
 				<button id="run" class="runButton" onclick="Control.toggleRun()">Start</button><!-- Maaaaan, why does html interpret line breaks? Even for inline elements, that's somewhat silly.
 			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step.">Step</button><!--
@@ -192,12 +202,19 @@ $recursion: 000
 			</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="./_js/setZeroTimeout.js"></script>
+		
 		<script type="text/javascript" src="./_js/Conversions.js"></script>
 		<script type="text/javascript" src="./_js/Register.js"></script>
 		<script type="text/javascript" src="./_js/Flag.js"></script>
 		<script type="text/javascript" src="./_js/Mem.js"></script>
 		<script type="text/javascript" src="./_js/Mirac.js"></script>
 		<script type="text/javascript" src="./_js/ALU.js"></script>
+		
+		<script type="text/javascript" src="./_js/OctalDisplay.js"></script>
+		<script type="text/javascript" src="./_js/DotMatrix.js"></script>
+		<script type="text/javascript" src="./_js/Devices.js"></script>
+		
 		<script type="text/javascript" src="./_js/Ins.js"></script>
 		<script type="text/javascript" src="./_js/Opcode.js"></script>
 		<script type="text/javascript" src="./_js/Opcodes.js"></script>

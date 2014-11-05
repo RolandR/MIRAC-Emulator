@@ -95,6 +95,7 @@ hr{
 	border: 1px rgba(0, 0, 0, 0.8) solid;
 	display: inline-block;
 	overflow: hidden;
+	vertical-align: top;
 }
 
 .panel h2,
@@ -175,10 +176,10 @@ hr{
 
 #romInput{
 	position: absolute;
-	vertical-align: top;
 	margin-left: 6px;
 	width: 501px;
 	height: 397px;
+	margin-top: 5px;
 	
 	transition: margin-left, width, margin-top, height;
 	transition-duration: 200ms;
@@ -308,10 +309,6 @@ hr{
 	display: block;
 }
 
-#moreRegistersPanel :first-child{
-	margin-top: 0px;
-}
-
 #flagtable{
 	border-collapse: collapse;
 	margin: 5px;
@@ -393,7 +390,45 @@ hr{
 	display: inline-block;
 }
 
+#octalDisplay{
+	width: 120px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
 
+#octalDisplay .displayContainer{
+	background-color: #000000;
+	margin: 5px auto;
+	text-align: center;
+	width: 100px;
+}
+
+#octalDisplay .displaySegment{
+	display: inline-block;
+	margin: 10px 2px 5px 2px;
+	width: 20px;
+	height: 32px;
+	background-image: url(../_media/sevensegment.png);
+}
+
+#dotMatrix{
+	width: 245px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#dotMatrix .dotMatrixContainer{
+	background-color: #000000;
+	margin: 5px auto;
+	width: 160px;
+	height: 160px;
+	padding: 5px;
+	text-align: center;
+}
+
+#dotMatrix #dotMatrixCanvas{
+	background-color: #300e00;
+}
 
 
 

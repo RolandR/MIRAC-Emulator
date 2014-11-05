@@ -2,40 +2,43 @@
 	Defines all periphery devices connected to the MIRAC 
 	periphery device bus.
 */
-var Devices = {
-	 runByOct: function(oct){
-		for(var i in Opcodes.ops){
-			if(Opcodes.ops[i].oct == oct){
-				Opcodes.ops[i].run();
-				return true();
+
+function Device(address, device){
+	this.address = address;
+	this.device = device;
+	return {
+		 address: this.address
+		,device: this.device
+	};
+}
+
+var Dev = {
+	 getByAddress: function(address){
+		var oct = binToOct(address);
+		for(var i in Dev.periphery){
+			if(Dev.periphery[i].address == oct){
+				return Dev.periphery[i].device;
 			}
 		}
 		return false;
 	}
-	,runByBin: function(bin){
-		for(var i in Opcodes.ops){
-			if(Opcodes.ops[i].bin == bin){
-				try{
-					Opcodes.ops[i].run();
-				} catch(e){
-					console.error("Error: "+Opcodes.ops[i].mnemonic);
-				}
-				return true;
-			}
+	,update: function(){
+		var device = this.getByAddress(Reg.pabr.get());
+		if(device){
+			device.update();
 		}
-		return false;
 	}
-	,mnemonicToOct: function(mnemonic){ // mnemonic is a truly broken word... mnemonic. mnemonic...
-		mnemonic = mnemonic.toLowerCase();
-		for(var i in Opcodes.ops){
-			if(Opcodes.ops[i].mnemonic == mnemonic){
-				return Opcodes.ops[i].oct;
-			}
+	,resetAll: function(){
+		for(var i in Dev.periphery){
+			Dev.periphery[i].device.reset();
 		}
-		return '';
 	}
-	,devices: [
-		 new Opcode('000', 'nope', Ins.nope)
-		,new Opcode('001', 'ldam', Ins.ldam)
+	,periphery: [
+		 new Device('020', OctalDisplay)
+		,new Device('030', DotMatrix)
+		,new Device('031', DotMatrix)
+		,new Device('032', DotMatrix)
+		,new Device('033', DotMatrix)
+		,new Device('034', DotMatrix)
 	]
 }

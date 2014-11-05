@@ -17,11 +17,11 @@ var Opcodes = {
 	,runByBin: function(bin){
 		for(var i in Opcodes.ops){
 			if(Opcodes.ops[i].bin == bin){
-				try{
+				//try{
 					Opcodes.ops[i].run();
-				} catch(e){
+				/*} catch(e){
 					console.error("Error: "+Opcodes.ops[i].mnemonic);
-				}
+				}*/
 				return true;
 			}
 		}
@@ -101,5 +101,11 @@ var Opcodes = {
 		,new Opcode('076', 'inca', Ins.inca)
 		,new Opcode('077', 'deca', Ins.deca)
 		,new Opcode('100', 'comp', Ins.comp)
+		,new Opcode('101', 'pdai', Ins.pdai)
+		,new Opcode('102', 'pdam', Ins.pdam)
+		,new Opcode('103', 'pdwi', Ins.pdwi)
+		,new Opcode('104', 'pdwm', Ins.pdwm)
+		,new Opcode('105', 'pdwa', Ins.pdwa)
+		,new Opcode('106', 'ldaa', Ins.ldaa)
 	]
 }

@@ -29,6 +29,13 @@ var Ins = {
 		Ins.loadArgumentByte();
 		Reg.a.set(Reg.ar.get());
 	}
+	,ldaa: function(){
+		// Load content of location specified in Accumulator into Accumulator.
+		// LDAA | -
+		Reg.abr.set(Reg.a.get());
+		mem.read();
+		Reg.a.set(Reg.din.get());
+	}
 	,jmpa: function(){
 		// Jump to location specified Accumulator.
 		// JMPA | -
@@ -443,4 +450,65 @@ var Ins = {
 		
 		Reg.a.set(ALU.shiftLeft(Reg.a.get(), true));
 	}
+	,pdai: function(){
+		// Set periphery address bus to specified value
+		// PDAI | #
+		
+		Ins.loadArgumentByte();
+		Reg.pabr.set(Reg.ar.get());
+	}
+	,pdam: function(){
+		// Set periphery address bus to value in specified
+		// memory location
+		// PDAM | addr
+		
+		Ins.loadArgumentByte();
+		Reg.abr.set(Reg.ar.get());
+		mem.read();
+		Reg.pabr.set(Reg.din.get());
+	}
+	,pdwi: function(){
+		// Write specified value to periphery data out bus
+		// PDWI | #
+		
+		Ins.loadArgumentByte();
+		Reg.pdout.set(Reg.ar.get());
+		Dev.update();
+	}
+	,pdwm: function(){
+		// Write value in specified memory location to periphery
+		// PDWM | addr
+		
+		Ins.loadArgumentByte();
+		Reg.abr.set(Reg.ar.get());
+		mem.read();
+		Reg.pdout.set(Reg.din.get());
+	}
+	,pdwa: function(){
+		// Write accumulator value to periphery data out bus
+		// PDWI | #
+		
+		Reg.pdout.set(Reg.a.get());
+		Dev.update();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

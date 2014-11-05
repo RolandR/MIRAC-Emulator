@@ -7,6 +7,9 @@ var Control = {
 	 measuredFrequency: 0
 	,cycleCountSinceMeasure: 0
 	,measureInterval: false
+	,paused: true
+	,cycleTimeout: null
+	,superFastTimeouts: []
 	
 	,init: function(){
 		Control.loadToRam();
@@ -36,16 +39,8 @@ var Control = {
 	
 	,hardReset: function(){
 		Control.reset();
-		for(var i = 0; i < mem.getSize(); i++){
-			mem.write();
-			Reg.abr.set(ALU.add(Reg.abr.get(), "00000001", false));
-		}
-		for(var i = 0; i < stack.getSize(); i++){
-			stack.write();
-			Reg.sp.set(ALU.add(Reg.sp.get(), "00000001", false));
-		}
-		Reg.abr.set("00000000");
-		Reg.sp.set("00000000");
+		mem.reset();
+		stack.reset();
 	}
 	
 	,cycleInterval: false
@@ -59,6 +54,14 @@ var Control = {
 		Reg.ir.set(Reg.din.get());
 		
 		Opcodes.runByBin(Reg.ir.get());
+		
+		if(!Control.paused){
+			if(Config.waitMillisecondsAfterCycle == 0){
+				cycleTimeout = setZeroTimeout(Control.cycle);
+			} else {
+				cycleTimeout = setTimeout(Control.cycle, Config.waitMillisecondsAfterCycle);
+			}
+		}
 	}
 	
 	,measureFrequency: function(){
@@ -67,7 +70,7 @@ var Control = {
 	}
 	
 	,toggleRun: function(){
-		if(Control.cycleInterval === false){
+		if(Control.paused){
 			Control.start();
 		} else {
 			Control.pause();
@@ -78,22 +81,29 @@ var Control = {
 		Control.pause();
 		Reg.reset();
 		Flags.reset();
+		Dev.resetAll();
 	}
 
 	,start: function(){
 		document.getElementById("frequency").innerHTML = "??? Hz";
 		Control.measureInterval = setInterval(Control.measureFrequency, Config.frequencyMeasuringFrequency);
-		Control.cycleInterval = setInterval(Control.cycle, Config.waitMillisecondsAfterCycle);
+		//Control.cycleInterval = setInterval(Control.cycle, Config.waitMillisecondsAfterCycle);
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "stopButton";
 		document.getElementById('run').innerHTML = "Pause";
+		Control.paused = false;
+		
+		Control.cycle();
 	}
 
 	,pause: function(){
+		Control.paused = true;
 		clearInterval(Control.measureInterval);
 		Control.measureInterval = false;
-		clearInterval(Control.cycleInterval);
-		Control.cycleInterval = false;
+		clearTimeout(Control.cycleTimeout);
+		control.cycleTimeout = null;
+		//clearInterval(Control.cycleInterval);
+		//Control.cycleInterval = false;
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "runButton";
 		document.getElementById('run').innerHTML = "Start";

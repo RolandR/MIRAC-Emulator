@@ -1,9 +1,12 @@
+pdai 020
 $start:
+pdwa
 inca
 comp 020
 brnz $subtract
 jmpi $start
 $subtract:
+pdwa
 deca
 comp 001
 brns $start

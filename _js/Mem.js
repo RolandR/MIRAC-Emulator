@@ -15,7 +15,10 @@ var Mem = function(
 	var size = s;
 	var memory = [];
 	for(var i = 0; i < size; i++){
-		memory.push("00000000");
+		memory.push({
+			 data: "00000000"
+			,element: null
+		});
 	}
 	
 	var memTableCols = cols;
@@ -23,30 +26,30 @@ var Mem = function(
 	
 	for(var y = 0; y < Math.ceil(memory.length/memTableCols); y++){
 		tableString += "<tr>";
+		var row = document.createElement("tr");
 		for(var x = 0; x < memTableCols; x++){
 			var addr = y*memTableCols + x;
-			tableString += '<td id="'+cellIdStr+(y*memTableCols + x)+'" title=" Octal Address '+decToOct(addr)+'">';
-				if(memory[addr] != null){
-					tableString += binToOct(memory[addr]);
-				}
-			tableString += "</td>";
+			memory[addr].element = document.createElement("td");
+			memory[addr].element.id = cellIdStr + addr;
+			memory[addr].element.title = decToOct(addr);
+			memory[addr].element.innerHTML = "000";
+			
+			row.appendChild(memory[addr].element);
 		}
-		tableString += "</tr>";
+		document.getElementById(tbodyId).appendChild(row);
 	}
-	
-	document.getElementById(tbodyId).innerHTML = tableString;
 	
 	function write(){
 		var addr = Math.round(binToDec(addrReg.get()));
 		if(addr >= size || addr < 0){
 			return false;
 		}
-		memory[addr] = dOutReg.get();
+		memory[addr].data = dOutReg.get();
 		
-		document.getElementById(cellIdStr+addr).innerHTML = binToOct(memory[addr]);
+		memory[addr].element.innerHTML = binToOct(memory[addr].data);
 		
-		document.getElementById(cellIdStr+addr).className += ' written';
-		setTimeout(function(){document.getElementById(cellIdStr+addr).className = ""}, 10);
+		memory[addr].element.className += ' written';
+		setTimeout(function(){memory[addr].element.className = ""}, 10);
 	}
 	
 	function read(){
@@ -54,13 +57,20 @@ var Mem = function(
 		if(addr > size || addr < 0){
 			return "00000000";
 		}
-		dInReg.set(memory[addr]);
-		document.getElementById(cellIdStr+addr).className += ' read';
-		setTimeout(function(){document.getElementById(cellIdStr+addr).className = ""}, 10);
+		dInReg.set(memory[addr].data);
+		memory[addr].element.className += ' read';
+		setTimeout(function(){memory[addr].element.className = ""}, 10);
 	}
 	
 	function getSize(){
 		return size;
+	}
+	
+	function reset(){
+		for(var i = 0; i < size; i++){
+			memory[i].data = "00000000";
+			memory[i].element.innerHTML = "000";
+		}
 	}
 	
 	return{
@@ -68,5 +78,6 @@ var Mem = function(
 		,read: read
 		,getSize: getSize
 		,memory: memory
+		,reset: reset
 	}
 }

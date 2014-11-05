@@ -6,20 +6,21 @@
 function Register(id){
 	var id = id;
 	var value;
+	var element = document.getElementById("r"+id);
 
 	set("00000000");
 	
 	function set(v){
 		value = v.substring(v.length - 8, v.length);
-		document.getElementById("r"+id).innerHTML = binToOct(value);
-		document.getElementById("r"+id).title = "Dec:\t"+binToDec(value) + " \nBin:\t"+ value;
+		element.innerHTML = binToOct(value);
+		element.title = "Dec:\t"+binToDec(value) + " \nBin:\t"+ value;
 		
-		document.getElementById("r"+id).className += ' written';
-		setTimeout(function(){document.getElementById("r"+id).className = "registerValue"}, 10);
+		element.className += ' written';
+		setTimeout(function(){element.className = "registerValue"}, 10);
 	}
 	function get(){
-		document.getElementById("r"+id).className += ' read';
-		setTimeout(function(){document.getElementById("r"+id).className = "registerValue"}, 10);
+		element.className += ' read';
+		setTimeout(function(){element.className = "registerValue"}, 10);
 		
 		return value;
 	}
