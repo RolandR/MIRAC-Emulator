@@ -1,0 +1,175 @@
+ldai #11000000
+pdai 031
+$drawLineLoop:
+pdwa
+inca
+comp #11010000
+brns $drawLineLoop
+
+ldai 003 // GPA is Y
+cpaa
+ldai 007 // GPB is x
+cpab
+ldai 001 // GPC is direction
+         // 000: up right
+         // 001: down right
+         // 002: down left
+         // 003: up left
+cpac
+
+$moveLoop:
+jsrt $move
+jmpi $moveLoop
+
+$move:
+rdac
+psha
+pdai 032
+jsrt $render
+pula
+comp 000
+brzs $moveUpRight
+comp 001
+brzs $moveDownRight
+comp 002
+brzs $moveDownLeft
+comp 003
+brzs $moveUpLeft
+$moveUpRight:
+ldai 001
+opra
+rdaa
+subt
+cpaa
+
+ldai 001
+opra
+rdab
+addc
+cpab
+
+jmpi $resumeMove
+
+$moveDownRight:
+ldai 001
+opra
+rdaa
+addc
+cpaa
+
+ldai 001
+opra
+rdab
+addc
+cpab
+
+jmpi $resumeMove
+
+$moveDownLeft:
+ldai 001
+opra
+rdaa
+addc
+cpaa
+
+ldai 001
+opra
+rdab
+subt
+cpab
+
+jmpi $resumeMove
+
+$moveUpLeft:
+ldai 001
+opra
+rdaa
+subt
+cpaa
+
+ldai 001
+opra
+rdab
+subt
+cpab
+
+jmpi $resumeMove
+
+$resumeMove:
+pdai 031
+jsrt $render
+
+rdaa
+comp #00001111
+srnz $bottomBounce
+comp 001
+srns $topBounce
+
+rdab
+comp #00001011
+srnz $rightBounce
+comp 001
+srns $leftBounce
+
+$endMove:
+
+rsrt
+
+$topBounce:
+    rdac
+    comp 000 // Currently going up right
+    brzz $changeDownLeft
+    ldai 001
+    jmpi $endTopBounce
+    $changeDownLeft:
+    ldai 002
+    $endTopBounce:
+    cpac
+rsrt
+
+$bottomBounce:
+    rdac
+    comp 001 // Currently going down right
+    brzz $changeUpLeft
+    ldai 000
+    jmpi $endTopBounce
+    $changeUpLeft:
+    ldai 003
+    $endBottomBounce:
+    cpac
+rsrt
+
+$leftBounce:
+    rdac
+    comp 003 // Currently going up left
+    brzz $changeDownRight
+    ldai 000
+    jmpi $endLeftBounce
+    $changeDownRight:
+    ldai 001
+    $endLeftBounce:
+    cpac
+rsrt
+
+$rightBounce:
+    rdac
+    comp 000 // Currently going up right
+    brzz $changeDownLeft
+    ldai 003
+    jmpi $endRightBounce
+    $changeDownLeft:
+    ldai 002
+    $endRightBounce:
+    cpac
+rsrt
+
+$render:
+    rdab
+    opra
+    ldai #00010000
+    mult
+    opra
+    rdaa
+    addc
+    pdwa
+rsrt

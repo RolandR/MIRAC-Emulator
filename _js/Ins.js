@@ -166,6 +166,86 @@ var Ins = {
 			Reg.pc.set(Reg.ar.get());
 		}
 	}
+	,srcz: function(){
+		// Call subroutine specified in next byte if carry flag = 0
+		// SRCZ | addr
+		
+		if(Flags.c.get() == "0"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,srcs: function(){
+		// Call subroutine specified in next byte if carry flag = 1
+		// SRCS | addr
+		
+		if(Flags.c.get() == "1"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,srzz: function(){
+		// Call subroutine specified in next byte if zero flag = 0
+		// SRZZ | addr
+		
+		if(Flags.z.get() == "0"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,srzs: function(){
+		// Call subroutine specified in next byte if zero flag = 1
+		// SRZS | addr
+		
+		if(Flags.z.get() == "1"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,sroz: function(){
+		// Call subroutine specified in next byte if overflow flag = 0
+		// SROZ | addr
+		
+		if(Flags.o.get() == "0"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,sros: function(){
+		// Call subroutine specified in next byte if overflow flag = 1
+		// SROS | addr
+		
+		if(Flags.o.get() == "1"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,srnz: function(){
+		// Call subroutine specified in next byte if negative flag = 0
+		// SRNZ | addr
+		
+		if(Flags.n.get() == "0"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
+	,srns: function(){
+		// Call subroutine specified in next byte if negative flag = 1
+		// SRNS | addr
+		
+		if(Flags.n.get() == "1"){
+			Ins.jsrt();
+		} else {
+			Ins.loadArgumentByte();
+		}
+	}
 	,cpaa: function(){
 		// Copy Accumulator to general purpose register 0
 		// CPAA | -

@@ -31,7 +31,7 @@ var Mem = function(
 			var addr = y*memTableCols + x;
 			memory[addr].element = document.createElement("td");
 			memory[addr].element.id = cellIdStr + addr;
-			memory[addr].element.title = decToOct(addr);
+			memory[addr].element.title = "Octal Address: "+decToOct(addr);
 			memory[addr].element.innerHTML = "000";
 			
 			row.appendChild(memory[addr].element);

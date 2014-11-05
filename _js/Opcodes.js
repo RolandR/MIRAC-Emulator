@@ -107,5 +107,13 @@ var Opcodes = {
 		,new Opcode('104', 'pdwm', Ins.pdwm)
 		,new Opcode('105', 'pdwa', Ins.pdwa)
 		,new Opcode('106', 'ldaa', Ins.ldaa)
+		,new Opcode('107', 'srcz', Ins.srcz)
+		,new Opcode('110', 'srcs', Ins.srcs)
+		,new Opcode('111', 'srzz', Ins.srzz)
+		,new Opcode('112', 'srzs', Ins.srzs)
+		,new Opcode('113', 'sroz', Ins.sroz)
+		,new Opcode('114', 'sros', Ins.sros)
+		,new Opcode('115', 'srnz', Ins.srnz)
+		,new Opcode('116', 'srns', Ins.srns)
 	]
 }
