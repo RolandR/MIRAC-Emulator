@@ -6,11 +6,11 @@ inca
 comp #11010000
 brns $drawLineLoop
 
-ldai 003 // GPA is Y
+ldai 003 // GPA is x
 cpaa
-ldai 007 // GPB is x
+ldai 007 // GPB is y
 cpab
-ldai 001 // GPC is direction
+ldai 000 // GPC is direction
          // 000: up right
          // 001: down right
          // 002: down left
@@ -38,60 +38,60 @@ brzs $moveUpLeft
 $moveUpRight:
 ldai 001
 opra
-rdaa
+rdab
 subt
-cpaa
+cpab
 
 ldai 001
 opra
-rdab
+rdaa
 addc
-cpab
+cpaa
 
 jmpi $resumeMove
 
 $moveDownRight:
 ldai 001
 opra
-rdaa
-addc
-cpaa
-
-ldai 001
-opra
 rdab
 addc
 cpab
+
+ldai 001
+opra
+rdaa
+addc
+cpaa
 
 jmpi $resumeMove
 
 $moveDownLeft:
 ldai 001
 opra
-rdaa
+rdab
 addc
-cpaa
+cpab
 
 ldai 001
 opra
-rdab
+rdaa
 subt
-cpab
+cpaa
 
 jmpi $resumeMove
 
 $moveUpLeft:
 ldai 001
 opra
-rdaa
-subt
-cpaa
-
-ldai 001
-opra
 rdab
 subt
 cpab
+
+ldai 001
+opra
+rdaa
+subt
+cpaa
 
 jmpi $resumeMove
 
@@ -99,15 +99,19 @@ $resumeMove:
 pdai 031
 jsrt $render
 
-rdaa
-comp #00001111
+rdab
+comp #00001011
+psha
 srnz $bottomBounce
+pula
 comp 001
 srns $topBounce
 
-rdab
-comp #00001011
+rdaa
+comp #00001111
+psha
 srnz $rightBounce
+pula
 comp 001
 srns $leftBounce
 
