@@ -1,0 +1,24 @@
+// Sample program demonstrating the stack and other
+// features of MIRAC
+
+$start:
+JSRT $doSomething  // Jump to subroutine
+LDAI 000           // Load 000 to accumulator
+WRAI $recursion    // Write accumulator to $recursion
+JMPI $start        // Jump to start
+
+$doSomething:
+LDAM $recursion    // Load value at $recursion to accu
+OPRA               // Accumulator to operand register
+LDAI 001           // Load 001 to accu
+ADDC               // Add accu and operand
+WRAI $recursion    // Write result to $recursion
+OPRA               // Accumulator to operand register
+LDAI #11111000     // Load -8 to accumulator
+ADDC               // Add
+BRZS $skip         // If accu -8 = 0, skip to $skip
+JSRT $doSomething  // Else, jump to subroutine
+$skip:
+RSRT               // Return from subroutine
+
+$recursion: 000
