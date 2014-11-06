@@ -14,7 +14,7 @@
 		<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32">
 		
-		
+		<meta name="mobile-web-app-capable" content="yes" />
 	</head>
 	<body>
 		<div id="centrificator">
@@ -301,7 +301,7 @@ rsrt
 				<div id="romControls">
 					<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button>
 					<span id="atAddress"> starting at octal address </span>
-					<input id="loadToAddress" type="number" value="0">
+					<input id="loadToAddress" type="text" value="0">
 				</div>
 			</div>
 			<br />
@@ -330,11 +330,11 @@ rsrt
 			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags.">Hard reset</button>
 				<hr />
 				<span class="controlValueLabel">Cycle interval: </span><!--
-			 --><input class="controlValue" id="cycleInterval" type="number" value="200" /><!--
+			 --><input class="controlValue" id="cycleInterval" type="number" value="0" /><!--
 			 --><button class="controlValueButton" id="cycleIntervalButton" onclick="Control.updateCycleInterval();">Apply</button><!--
 			 --><hr />
 				<span class="controlValueLabel">Set PC (octal): </span><!--
-			 --><input class="controlValue" id="setPC" type="number" value="0" /><!--
+			 --><input class="controlValue" id="setPC" type="text" value="0" /><!--
 			 --><button class="controlValueButton" id="setPCButton" onclick="Control.setPC();">Apply</button><!--
 			 --><hr />
 				<span class="controlValueLabel" id="frequencyLabel">Running at: </span><!--

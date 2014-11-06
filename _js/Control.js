@@ -87,7 +87,6 @@ var Control = {
 	,start: function(){
 		document.getElementById("frequency").innerHTML = "??? Hz";
 		Control.measureInterval = setInterval(Control.measureFrequency, Config.frequencyMeasuringFrequency);
-		//Control.cycleInterval = setInterval(Control.cycle, Config.waitMillisecondsAfterCycle);
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "stopButton";
 		document.getElementById('run').innerHTML = "Pause";
@@ -102,8 +101,6 @@ var Control = {
 		Control.measureInterval = false;
 		clearTimeout(Control.cycleTimeout);
 		control.cycleTimeout = null;
-		//clearInterval(Control.cycleInterval);
-		//Control.cycleInterval = false;
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "runButton";
 		document.getElementById('run').innerHTML = "Start";

@@ -188,6 +188,7 @@ hr{
 
 #romInput #romTextContainer{
 	position: absolute;
+	overflow: hidden;
 	display: block;
 	top: 30px;
 	left: 5px;
@@ -214,6 +215,7 @@ hr{
 	bottom: 35px;
 	box-sizing: border-box;
 	padding: 5px;
+	overflow: hidden;
 }
 
 #romInput #biggerButton{
