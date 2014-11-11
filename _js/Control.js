@@ -10,6 +10,7 @@ var Control = {
 	,paused: true
 	,cycleTimeout: null
 	,superFastTimeouts: []
+	,openPopupId: ""
 	
 	,init: function(){
 		Control.loadToRam();
@@ -87,7 +88,6 @@ var Control = {
 	,start: function(){
 		document.getElementById("frequency").innerHTML = "??? Hz";
 		Control.measureInterval = setInterval(Control.measureFrequency, Config.frequencyMeasuringFrequency);
-		//Control.cycleInterval = setInterval(Control.cycle, Config.waitMillisecondsAfterCycle);
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "stopButton";
 		document.getElementById('run').innerHTML = "Pause";
@@ -102,8 +102,6 @@ var Control = {
 		Control.measureInterval = false;
 		clearTimeout(Control.cycleTimeout);
 		control.cycleTimeout = null;
-		//clearInterval(Control.cycleInterval);
-		//Control.cycleInterval = false;
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "runButton";
 		document.getElementById('run').innerHTML = "Start";
@@ -137,4 +135,21 @@ var Control = {
 			document.getElementById("romInput").className = "panel";
 		}
 	}
+	,updateUseAnimations: function(){
+		Config.useAnimations = document.getElementById("useAnimations").checked;
+	}
+	,showPopup: function(id){
+		this.openPopupId = id;
+		document.getElementById("popupOverlay").style.display = "block";
+		document.getElementById(id).style.display = "block";
+	}
+	,hidePopup: function(id){
+		this.openPopupId = "";
+		document.getElementById("popupOverlay").style.display = "none";
+		document.getElementById(id).style.display = "none";
+	}
 }
+
+document.onkeyup = function(event){
+	
+};

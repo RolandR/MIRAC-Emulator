@@ -188,6 +188,7 @@ hr{
 
 #romInput #romTextContainer{
 	position: absolute;
+	overflow: hidden;
 	display: block;
 	top: 30px;
 	left: 5px;
@@ -214,6 +215,7 @@ hr{
 	bottom: 35px;
 	box-sizing: border-box;
 	padding: 5px;
+	overflow: hidden;
 }
 
 #romInput #biggerButton{
@@ -326,11 +328,16 @@ hr{
 }
 
 #control{
-	height: 173px;
+	
 }
 
 #control button{
 	margin-right: 5px;
+}
+
+.controlValueLabel{
+	vertical-align: center;
+	height: 30px;
 }
 
 #run{
@@ -378,7 +385,6 @@ hr{
 
 #rightpanel #frequencyLabel{
 	width: 120px;
-	height: 30px;
 }
 
 #rightpanel #frequency{
@@ -391,7 +397,7 @@ hr{
 }
 
 #octalDisplay{
-	width: 120px;
+	width: 121px;
 	margin-top: 5px;
 	margin-left: 5px;
 }
@@ -412,7 +418,7 @@ hr{
 }
 
 #dotMatrix{
-	width: 245px;
+	width: 246px;
 	margin-top: 5px;
 	margin-left: 5px;
 }
@@ -430,6 +436,93 @@ hr{
 	background-color: #300e00;
 }
 
+#asciiDisplay{
+	width: 246px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
 
+#asciiDisplay .asciiDisplayContainer{
+	white-space: normal;
+	background-color: #000000;
+	margin: 5px auto;
+	width: 184px;
+	height: 30px;
+	padding: 5px 0px 5px 5px;
+	text-align: center;
+}
 
+#asciiDisplay .asciiDisplayContainer span{
+	height: 20px;
+	width: 16px;
+	display: block;
+	float: left;
+	background-color: #300e00;
+	color: #ffa07a;
+	margin: 5px 2px 0px 0px;
+}
 
+.peripheryDocs{
+	float: right;
+	margin: 3px;
+	padding: 2px 5px;
+	cursor: pointer;
+	border: 1px rgba(0, 0, 0, 0) solid;
+	color: #0055FF;
+}
+
+.peripheryDocs:hover{
+	border-color: rgba(0, 0, 0, 0.2);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
+}
+
+#popupOverlay{
+	display: none;
+	position: fixed;
+	z-index: 100000000;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+#popupOverlay #overlayContainer{
+	display: block;
+	width: 100%;
+	position: relative;
+	height: 100%;
+}
+
+.popup{
+	display: none;
+	background-color: #F8F8FF;
+	border: 1px rgba(0, 0, 0, 0.8) solid;
+	max-width: 600px;
+	width: 90%;
+	min-height: 200px;
+	margin: 50px auto;
+	overflow: hidden;
+	top: 10%;
+}
+
+.popup h2{
+	display: block;
+	width: 100%;
+	background-color: #EEEEFF;
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+	padding-left: 5px;
+	padding-top: 3px;
+	border-bottom: 1px rgba(0, 0, 0, 0.8) solid;
+}
+
+.popup .popupCloseButton{
+	float: right;
+	display: block;
+	margin: -2px 6px -2px -2px;
+	height: 19px;
+	width: 19px;
+	text-align: center;
+	padding: 0px 5px;
+	line-height: 1em;
+}

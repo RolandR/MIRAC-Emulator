@@ -70,7 +70,6 @@ var Assembler = new function(){
 				// to octal
 				if(/'[ -~]'/g.test(lines[i][l]) === true){
 					var character = lines[i][l].charCodeAt(1);
-					console.log(i, character);
 					lines[i][l] = decToOct(character);
 				}
 			}

@@ -48,8 +48,10 @@ var Mem = function(
 		
 		memory[addr].element.innerHTML = binToOct(memory[addr].data);
 		
-		memory[addr].element.className += ' written';
-		setTimeout(function(){memory[addr].element.className = ""}, 10);
+		if(Config.useAnimations){
+			memory[addr].element.className += ' written';
+			setTimeout(function(){memory[addr].element.className = ""}, 10);
+		}
 	}
 	
 	function read(){
@@ -58,8 +60,11 @@ var Mem = function(
 			return "00000000";
 		}
 		dInReg.set(memory[addr].data);
-		memory[addr].element.className += ' read';
-		setTimeout(function(){memory[addr].element.className = ""}, 10);
+		
+		if(Config.useAnimations){
+			memory[addr].element.className += ' read';
+			setTimeout(function(){memory[addr].element.className = ""}, 10);
+		}
 	}
 	
 	function getSize(){

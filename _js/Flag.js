@@ -6,19 +6,24 @@
 function Flag(id){
 	var id = id;
 	var value;
+	var element = document.getElementById("f"+id);
 
 	set("0");
 	
 	function set(v){
 		value = v.substring(v.length - 1, v.length);
-		document.getElementById("f"+id).innerHTML = value;
+		element.innerHTML = value;
 		
-		document.getElementById("f"+id).className += ' written';
-		setTimeout(function(){document.getElementById("f"+id).className = ""}, 10);
+		if(Config.useAnimations){
+			element.className += ' written';
+			setTimeout(function(){element.className = ""}, 10);
+		}
 	}
 	function get(){
-		document.getElementById("f"+id).className += ' read';
-		setTimeout(function(){document.getElementById("f"+id).className = ""}, 10);
+		if(Config.useAnimations){
+			element.className += ' read';
+			setTimeout(function(){element.className = ""}, 10);
+		}
 		
 		return value;
 	}

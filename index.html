@@ -14,7 +14,7 @@
 		<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32">
 		
-		
+		<meta name="mobile-web-app-capable" content="yes" />
 	</head>
 	<body>
 		<div id="centrificator">
@@ -301,7 +301,7 @@ rsrt
 				<div id="romControls">
 					<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button>
 					<span id="atAddress"> starting at octal address </span>
-					<input id="loadToAddress" type="number" value="0">
+					<input id="loadToAddress" type="text" value="0">
 				</div>
 			</div>
 			<br />
@@ -310,35 +310,54 @@ rsrt
 				<table id="ramtable" class="memtable">
 					<tbody id="ramtbody"></tbody>
 				</table>
-			</div><!--br /><div id="monitor" class="panel">
-				Monitor!
-			</div--><br /><div id="octalDisplay" class="panel">
+			</div><br /><div id="octalDisplay" class="panel">
 				<h2 title="Device Address: 020">Oct Display</h2>
 				<div class="displayContainer">
 					<div class="displaySegment" id="displaySegment0"></div><div class="displaySegment" id="displaySegment1"></div><div class="displaySegment" id="displaySegment2"></div>
 				</div>
+				<span class="peripheryDocs" onclick="Control.showPopup('octalDisplayInfoPopup');">Docs</span>
 			</div><div id="dotMatrix" class="panel">
 				<h2 title="Device Addresses: 030 - 034">Dot Matrix</h2>
 				<div class="dotMatrixContainer">
 					<canvas id="dotMatrixCanvas" height="160" width="160"></canvas>
 				</div>
+				<span class="peripheryDocs" onclick="Control.showPopup('dotMatrixInfoPopup');">Docs</span>
+			</div><div id="asciiDisplay" class="panel">
+				<h2 title="Device Address: 040">ASCII Display</h2>
+				<div class="asciiDisplayContainer">
+					<span id="displayChar0">
+					</span><span id="displayChar1">
+					</span><span id="displayChar2">
+					</span><span id="displayChar3">
+					</span><span id="displayChar4">
+					</span><span id="displayChar5">
+					</span><span id="displayChar6">
+					</span><span id="displayChar7">
+					</span><span id="displayChar8">
+					</span><span id="displayChar9">
+					</span></div>
+				<span class="peripheryDocs" onclick="Control.showPopup('asciiDisplayInfoPopup');">Docs</span>
 			</div></div><div id="rightpanel"><div id="control" class="rightPanelDiv panel">
 				<h2>Control</h2>
 				<button id="run" class="runButton" onclick="Control.toggleRun()">Start</button><!-- Maaaaan, why does html interpret line breaks? Even for inline elements, that's somewhat silly.
 			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step.">Step</button><!--
 			 --><button id="resetpc" onclick="Control.reset();" title="Clears registers and flags.">Reset to start</button><!--
-			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags.">Hard reset</button>
-				<hr />
-				<span class="controlValueLabel">Cycle interval: </span><!--
+			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags.">Hard reset</button><!--
+			 --><hr /><!--
+			 --><span class="controlValueLabel">Cycle interval: </span><!--
 			 --><input class="controlValue" id="cycleInterval" type="number" value="200" /><!--
 			 --><button class="controlValueButton" id="cycleIntervalButton" onclick="Control.updateCycleInterval();">Apply</button><!--
-			 --><hr />
-				<span class="controlValueLabel">Set PC (octal): </span><!--
-			 --><input class="controlValue" id="setPC" type="number" value="0" /><!--
+			 --><hr /><!--
+			 --><span class="controlValueLabel">Set PC (octal): </span><!--
+			 --><input class="controlValue" id="setPC" type="text" value="0" /><!--
 			 --><button class="controlValueButton" id="setPCButton" onclick="Control.setPC();">Apply</button><!--
-			 --><hr />
-				<span class="controlValueLabel" id="frequencyLabel">Running at: </span><!--
-			 --><span class="controlValueLabel" id="frequency" title="Breathtaking speeds!">(Paused)</span>
+			 --><hr /><!--
+			 --><span class="controlValueLabel" id="frequencyLabel">Running at: </span><!--
+			 --><span class="controlValueLabel" id="frequency" title="Breathtaking speeds!">(Paused)</span><!--
+			 --><hr /><!--
+			 --><span class="controlValueLabel">Use animations: </span><!--
+			 --><input class="controlValue" id="useAnimations" type="checkbox" checked="true" onclick="Control.updateUseAnimations();" />
+			 
 			 
 			 </div><div id="flags" class="rightPanelDiv panel">
 				<h2>Flags</h2>
@@ -371,7 +390,25 @@ rsrt
 			</div>
 			</div>
 		</div>
+		<div id="popupOverlay">
+			<div id="overlayContainer">
+				<div class="popup" id="octalDisplayInfoPopup">
+					<h2>Info: Octal Display <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+				</div>
+				<div class="popup" id="dotMatrixInfoPopup">
+					<h2>Info: Dot Matrix <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+				</div>
+				<div class="popup" id="asciiDisplayInfoPopup">
+					<h2>Info: ASCII Display <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+				</div>
+			</div>
+		</div>
+		
+		
+		
 		<script type="text/javascript" src="./_js/setZeroTimeout.js"></script>
+		
+		<script type="text/javascript" src="./_js/Config.js"></script>
 		
 		<script type="text/javascript" src="./_js/Conversions.js"></script>
 		<script type="text/javascript" src="./_js/Register.js"></script>
@@ -382,6 +419,7 @@ rsrt
 		
 		<script type="text/javascript" src="./_js/OctalDisplay.js"></script>
 		<script type="text/javascript" src="./_js/DotMatrix.js"></script>
+		<script type="text/javascript" src="./_js/AsciiDisplay.js"></script>
 		<script type="text/javascript" src="./_js/Devices.js"></script>
 		
 		<script type="text/javascript" src="./_js/Ins.js"></script>
@@ -389,7 +427,6 @@ rsrt
 		<script type="text/javascript" src="./_js/Opcodes.js"></script>
 		
 		<script type="text/javascript" src="./_js/Assembler.js"></script>
-		<script type="text/javascript" src="./_js/Config.js"></script>
 		<script type="text/javascript" src="./_js/Control.js"></script>
 		<script type="text/javascript" src="./_js/Editor.js"></script>
 		<script type="text/javascript" src="./_js/Emulator.js"></script>

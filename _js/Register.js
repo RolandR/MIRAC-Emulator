@@ -15,12 +15,16 @@ function Register(id){
 		element.innerHTML = binToOct(value);
 		element.title = "Dec:\t"+binToDec(value) + " \nBin:\t"+ value;
 		
-		element.className += ' written';
-		setTimeout(function(){element.className = "registerValue"}, 10);
+		if(Config.useAnimations){
+			element.className += ' written';
+			setTimeout(function(){element.className = "registerValue"}, 10);
+		}
 	}
 	function get(){
-		element.className += ' read';
-		setTimeout(function(){element.className = "registerValue"}, 10);
+		if(Config.useAnimations){
+			element.className += ' read';
+			setTimeout(function(){element.className = "registerValue"}, 10);
+		}
 		
 		return value;
 	}

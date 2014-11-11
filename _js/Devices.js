@@ -40,5 +40,7 @@ var Dev = {
 		,new Device('032', DotMatrix)
 		,new Device('033', DotMatrix)
 		,new Device('034', DotMatrix)
+		,new Device('040', AsciiDisplay)
+		,new Device('041', AsciiDisplay)
 	]
 }
