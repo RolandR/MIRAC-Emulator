@@ -1,0 +1,105 @@
+/*
+	Styles for the ROM/MIDAS input form.
+*/
+
+#romInput{
+	position: absolute;
+	margin-left: 6px;
+	width: 501px;
+	height: 397px;
+	margin-top: 5px;
+	
+	transition: margin-left, width, margin-top, height;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+
+#romInput #romTextContainer{
+	position: absolute;
+	overflow: hidden;
+	display: block;
+	top: 30px;
+	left: 5px;
+	right: 5px;
+	bottom: 35px;
+	z-index: 10000;
+}
+
+#romInput #romText{
+	height: 100%;
+	width: 100%;
+	display: block;
+	background-color: transparent;
+	color: rgba(0, 0, 0, 0.1);
+	padding: 5px;
+}
+
+#romInput #romDisplay{
+	position: absolute;
+	display: block;
+	top: 30px;
+	left: 5px;
+	right: 5px;
+	bottom: 35px;
+	box-sizing: border-box;
+	padding: 5px;
+	overflow: hidden;
+}
+
+#romInput #biggerButton{
+	padding: 0px;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	width: 19px;
+	height: 19px;
+	line-height: 13px;
+	box-sizing: border-box;
+	background-image: url(../_media/expand.svg);
+	background-color: #FCFCFC;
+	background-size: 15px 15px;
+	background-position: 1px 1px;
+	background-repeat: no-repeat;
+}
+
+#romInput.bigger #biggerButton{
+	background-image: url(../_media/shrink.svg);
+ }
+
+ #romInput #biggerButton:hover{
+	background-color: #FFFFFF;
+ }
+
+#romInput #romControls{
+	position: absolute;
+	bottom: 5px;
+}
+
+#romInput.bigger{
+	margin-left: -502px;
+	width: 1009px;
+	margin-top: -53px;
+	height: 95%;
+}
+
+#loadRamButton{
+	margin-left: 5px;
+}
+
+#loadRamButton > span{
+	display: inline-block;
+	margin: 0px 5px -3px -1px;
+	height: 15px;
+	width: 15px;
+	float: left;
+	
+	background-image: url(../_media/save.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#loadToAddress{
+	width: 40px;
+	text-align: right;
+}

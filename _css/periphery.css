@@ -1,0 +1,83 @@
+/*
+	Styles for periphery device related stuff.
+*/
+
+#octalDisplay{
+	width: 121px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#octalDisplay .displayContainer{
+	background-color: #000000;
+	margin: 5px auto;
+	text-align: center;
+	width: 100px;
+}
+
+#octalDisplay .displaySegment{
+	display: inline-block;
+	margin: 10px 2px 5px 2px;
+	width: 20px;
+	height: 32px;
+	background-image: url(../_media/sevensegment.png);
+}
+
+#dotMatrix{
+	width: 246px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#dotMatrix .dotMatrixContainer{
+	background-color: #000000;
+	margin: 5px auto;
+	width: 160px;
+	height: 160px;
+	padding: 5px;
+	text-align: center;
+}
+
+#dotMatrix #dotMatrixCanvas{
+	background-color: #300e00;
+}
+
+#asciiDisplay{
+	width: 246px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#asciiDisplay .asciiDisplayContainer{
+	white-space: normal;
+	background-color: #000000;
+	margin: 5px auto;
+	width: 184px;
+	height: 30px;
+	padding: 5px 0px 5px 5px;
+	text-align: center;
+}
+
+#asciiDisplay .asciiDisplayContainer span{
+	height: 20px;
+	width: 16px;
+	display: block;
+	float: left;
+	background-color: #300e00;
+	color: #ffa07a;
+	margin: 5px 2px 0px 0px;
+}
+
+.peripheryDocs{
+	float: right;
+	margin: 3px;
+	padding: 2px 5px;
+	cursor: pointer;
+	border: 1px rgba(0, 0, 0, 0) solid;
+	color: #0055FF;
+}
+
+.peripheryDocs:hover{
+	border-color: rgba(0, 0, 0, 0.2);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
+}

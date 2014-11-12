@@ -1,0 +1,60 @@
+/*
+	Styles for popup windows.
+	All popup windows are opened in #popupOverlay, which covers
+	the entire screen as a semi-transparent mask, blocking
+	further interaction with the rest of the site.
+	
+	Currently, only one popup is meant to be open at a time.
+*/
+
+#popupOverlay{
+	display: none;
+	position: fixed;
+	z-index: 100000000;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+#popupOverlay #overlayContainer{
+	display: block;
+	width: 100%;
+	position: relative;
+	height: 100%;
+}
+
+.popup{
+	display: none;
+	background-color: #F8F8FF;
+	border: 1px rgba(0, 0, 0, 0.8) solid;
+	max-width: 600px;
+	width: 90%;
+	min-height: 200px;
+	margin: 50px auto;
+	overflow: hidden;
+	top: 10%;
+}
+
+.popup h2{
+	display: block;
+	width: 100%;
+	background-color: #EEEEFF;
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+	padding-left: 5px;
+	padding-top: 3px;
+	border-bottom: 1px rgba(0, 0, 0, 0.8) solid;
+}
+
+.popup .popupCloseButton{
+	float: right;
+	display: block;
+	margin: -2px 6px -2px -2px;
+	height: 19px;
+	width: 19px;
+	text-align: center;
+	padding: 0px 5px;
+	line-height: 1em;
+	font-family: OpenSans, sans-serif;
+}

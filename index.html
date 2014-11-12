@@ -80,9 +80,6 @@
 					<a href="./docs/Mirac.pdf" target="_blank">Download</a> (pdf, 42k).
 				</p>
 				<p>
-					Currently, not all planned instructions are implemented in the MIRAC CPU.
-				</p>
-				<p>
 					<a href="https://github.com/RolandR/MIRAC-Emulator" target="_blank">Github Repository</a>. Made by <a href="http://rolandrytz.ch" target="_blank">Roland Rytz</a>.
 				</p>
 			</div><div id="romInput" class="panel">
@@ -99,7 +96,20 @@
 						onpaste="setTimeout(editor.onEdit);"
 						onmouseup="editor.onEdit();"
 						onscroll="editor.onScroll();"
-					>ldai #11000000
+					>
+pdai 040
+pdwi '~'
+pdwi 'W'
+pdwi 'e'
+pdwi 'l'
+pdwi 'c'
+pdwi 'o'
+pdwi 'm'
+pdwi 'e'
+pdwi '!'
+pdwi '~'
+
+ldai #11000000
 pdai 031
 $drawLineLoop:
 pdwa
@@ -299,7 +309,7 @@ rsrt
 				</div>
 				<div id="romDisplay" contenteditable="true"></div>
 				<div id="romControls">
-					<button id="loadRamButton" onclick="Control.loadToRam();">Load to RAM</button>
+					<button id="loadRamButton" onclick="Control.loadToRam();"><span></span>Load to RAM</button>
 					<span id="atAddress"> starting at octal address </span>
 					<input id="loadToAddress" type="text" value="0">
 				</div>
@@ -339,10 +349,10 @@ rsrt
 				<span class="peripheryDocs" onclick="Control.showPopup('asciiDisplayInfoPopup');">Docs</span>
 			</div></div><div id="rightpanel"><div id="control" class="rightPanelDiv panel">
 				<h2>Control</h2>
-				<button id="run" class="runButton" onclick="Control.toggleRun()">Start</button><!-- Maaaaan, why does html interpret line breaks? Even for inline elements, that's somewhat silly.
-			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step.">Step</button><!--
-			 --><button id="resetpc" onclick="Control.reset();" title="Clears registers and flags.">Reset to start</button><!--
-			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags.">Hard reset</button><!--
+				<button id="run" class="runButton" onclick="Control.toggleRun()"><span></span>Start</button><!-- Maaaaan, why does html interpret line breaks? Even for inline elements, that's somewhat silly.
+			 --><button id="resetpc" onclick="Control.reset();" title="Clears registers and flags."><span></span>Reset to start</button><br /><!--
+			 --><button id="cycle" onclick="Control.cycle();" title="Single cycle step."><span></span>Step</button><!--
+			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags."><span></span>Hard reset</button><!--
 			 --><hr /><!--
 			 --><span class="controlValueLabel">Cycle interval: </span><!--
 			 --><input class="controlValue" id="cycleInterval" type="number" value="200" /><!--

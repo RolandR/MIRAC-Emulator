@@ -1,0 +1,120 @@
+/*
+	Styles for emulator control elements.
+*/
+
+#control{
+	
+}
+
+.controlValueLabel{
+	vertical-align: center;
+	height: 30px;
+}
+
+#run{
+	margin: 15px 10px 10px 40px;
+	width: 106px;
+}
+
+#run:active{
+	border-color: #AADDAA;	
+}
+
+#cycle{
+	width: 106px;
+	margin: 0px 10px 20px 40px;
+}
+
+#resetpc{
+	width: 170px;
+}
+
+#resetmem{
+	width: 170px;
+}
+
+#control button > span{
+	display: inline-block;
+	margin: -1px 4px -3px -1px;
+	height: 16px;
+	width: 16px;
+	float: left;
+	
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.runButton span{
+	background-image: url(../_media/start.svg);
+}
+
+.stopButton span{
+	background-image: url(../_media/pause.svg);
+}
+
+#cycle span{
+	background-image: url(../_media/step.svg);
+}
+
+#resetpc span{
+	background-image: url(../_media/reset.svg);
+}
+
+#resetmem span{
+	background-image: url(../_media/hardReset.svg);
+}
+
+.runButton{
+	background: linear-gradient(to bottom, #DDFFDD, #AAFFAA);
+	border-color: #AADDAA;	
+}
+
+.runButton:hover{
+	background: linear-gradient(to bottom, #F6FFF6, #CCFFCC);
+	border-color: #BBEEBB;	
+}
+
+.runButton:active{
+	border-color: #AADDAA;	
+}
+
+.stopButton{
+	background: linear-gradient(to bottom, #FFDDDD, #FFAAAA);
+	border-color: #DDAAAA;	
+}
+
+.stopButton:hover{
+	background: linear-gradient(to bottom, #FFF6F6, #FFCCCC);
+	border-color: #EEBBBB;	
+}
+
+.stopButton:active{
+	border-color: #DDAAAA;	
+}
+
+#control .controlValueLabel{
+	margin-left: 5px;
+	display: inline-block;
+	width: 176px;
+}
+
+#control .controlValueButton{
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#control .controlValue{
+	width: 40px;
+	text-align: right;
+	height: 18px;
+}
+
+#control #frequencyLabel{
+	width: 120px;
+}
+
+#control #frequency{
+	text-align: right;
+	width: 153px;
+}

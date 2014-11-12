@@ -90,7 +90,7 @@ var Control = {
 		Control.measureInterval = setInterval(Control.measureFrequency, Config.frequencyMeasuringFrequency);
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "stopButton";
-		document.getElementById('run').innerHTML = "Pause";
+		document.getElementById('run').innerHTML = "<span></span>Pause";
 		Control.paused = false;
 		
 		Control.cycle();
@@ -104,7 +104,7 @@ var Control = {
 		control.cycleTimeout = null;
 		document.getElementById('run').className = "";
 		document.getElementById('run').className = "runButton";
-		document.getElementById('run').innerHTML = "Start";
+		document.getElementById('run').innerHTML = "<span></span>Start";
 		document.getElementById("frequency").innerHTML = "(Paused)";
 	}
 	,updateCycleInterval: function(){
@@ -148,8 +148,28 @@ var Control = {
 		document.getElementById("popupOverlay").style.display = "none";
 		document.getElementById(id).style.display = "none";
 	}
+	,closeCurrentPopup: function(){
+		if(this.openPopupId != ""){
+			this.hidePopup(this.openPopupId);
+		}
+	}
 }
 
 document.onkeyup = function(event){
-	
+	switch(event.which){
+		case 27: // Esc
+			Control.closeCurrentPopup();
+		break;
+	}
 };
+
+document.getElementById("popupOverlay").onclick = function(){
+	Control.closeCurrentPopup();
+}
+
+var popupWindows = document.getElementsByClassName("popup");
+for(var i in popupWindows){
+	popupWindows[i].onclick = function(event){
+		event.stopPropagation();
+	}
+}
