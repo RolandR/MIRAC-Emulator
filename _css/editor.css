@@ -38,6 +38,11 @@
 	font-weight: bold;
 }
 
+.e-decimal{
+	color: #00BBDD;
+	font-weight: bold;
+}
+
 .e-valid-char{
 	color: #AA00FF;
 	font-weight: bold;

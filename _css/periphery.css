@@ -2,10 +2,14 @@
 	Styles for periphery device related stuff.
 */
 
-#octalDisplay{
+#octalDisplay, #joystick{
 	width: 121px;
 	margin-top: 5px;
 	margin-left: 5px;
+}
+
+#octJoystick{
+	display: inline-block;
 }
 
 #octalDisplay .displayContainer{
@@ -21,6 +25,10 @@
 	width: 20px;
 	height: 32px;
 	background-image: url(../_media/sevensegment.png);
+}
+
+#joystick .joystickContainer{
+	margin: 5px 5px;
 }
 
 #dotMatrix{

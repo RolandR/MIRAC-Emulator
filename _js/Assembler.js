@@ -59,6 +59,12 @@ var Assembler = new function(){
 				if(lines[i][l].substring(0, 1) == "#"){
 					lines[i][l] = binToOct(lines[i][l].substring(1, lines[i][l].length));
 				}
+
+				// Values ending with . are decimal.
+				// Translate them to octal
+				if(lines[i][l].substring(lines[i][l].length-1, lines[i][l].length) == "."){
+					lines[i][l] = decToOct(lines[i][l].substring(0, lines[i][l].length-1));
+				}
 				
 				// Remove emtpy entries
 				if(lines[i][l] == ""){

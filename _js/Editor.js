@@ -79,6 +79,8 @@ function Editor(
 				}
 			} else if(fragment.substring(0, 1) == "#"){	// Binary value
 				code[c] = '<span class="e-binary" title="Octal: '+binToOct(fragment)+'">'+fragment+"</span>";
+				} else if(fragment.substring(fragment.length-1, fragment.length) == "."){	// Decimal value
+				code[c] = '<span class="e-decimal" title="Octal: '+binToOct(fragment)+'">'+fragment+"</span>";
 			} else if(/^([0-7]*)$/.test(fragment) === true && fragment.length > 0){	// Octal value
 				code[c] = '<span class="e-octal" title="Binary: '+octToBin(fragment)+'">'+fragment+"</span>";
 			}

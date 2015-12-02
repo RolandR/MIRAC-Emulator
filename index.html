@@ -320,13 +320,29 @@ rsrt
 				<table id="ramtable" class="memtable">
 					<tbody id="ramtbody"></tbody>
 				</table>
-			</div><br /><div id="octalDisplay" class="panel">
+			</div><br /><div id="octJoystick"><div id="octalDisplay" class="panel">
 				<h2 title="Device Address: 020">Oct Display</h2>
 				<div class="displayContainer">
 					<div class="displaySegment" id="displaySegment0"></div><div class="displaySegment" id="displaySegment1"></div><div class="displaySegment" id="displaySegment2"></div>
 				</div>
 				<span class="peripheryDocs" onclick="Control.showPopup('octalDisplayInfoPopup');">Docs</span>
-			</div><div id="dotMatrix" class="panel">
+			</div><br /><div id="joystick" class="panel">
+				<h2 title="Device Address: 050">Joystick</h2>
+				<div class="joystickContainer">
+					<table>
+						<tr>
+							<td></td><td><button>^</button></td><td></td>
+						</tr>
+						<tr>
+							<td><button>&lt;</button></td><td><button>o</button></td><td><button>&gt;</button></td>
+						</tr>
+						<tr>
+							<td></td><td><button>v</button></td><td></td>
+						</tr>
+					</table>
+				</div>
+				<span class="peripheryDocs" onclick="Control.showPopup('dotMatrixInfoPopup');">Docs</span>
+			</div></div><div id="dotMatrix" class="panel">
 				<h2 title="Device Addresses: 030 - 034">Dot Matrix</h2>
 				<div class="dotMatrixContainer">
 					<canvas id="dotMatrixCanvas" height="160" width="160"></canvas>
