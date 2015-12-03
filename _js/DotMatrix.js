@@ -3,9 +3,9 @@
 	
 	Address | Mode
 	--------+----------------
-	    030 | Flip pixel at pdout XXXX YYYY
-	    031 | Turn on  pixel at pdout XXXX YYYY
-	    032 | Turn off pixel at pdout XXXX YYYY
+	    030 | Flip pixel at pdout YYYY XXXX
+	    031 | Turn on  pixel at pdout YYYY XXXX
+	    032 | Turn off pixel at pdout YYYY XXXX
 		033 | Feed pdout to dot matrix, each byte controlling a pixel.
 		034 | Fill matrix with pattern in pdout
 */

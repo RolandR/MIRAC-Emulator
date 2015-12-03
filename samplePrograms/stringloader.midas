@@ -1,0 +1,33 @@
+// String loader
+
+jmpi $stringLoader
+
+$string:
+
+'h' 'e' 'l' 'l' 'o' 'w' 'o' 'r' 'l' 'd' 000
+
+// null-terminated because why not
+
+$stringLoader:
+
+pdai 040 // Set device address 040, for the ASCII display
+ldai $string // Copy $string address to accumulator
+cpaa // copy accumulator to gen. purpose register A
+
+$stringLoop:
+
+rdaa
+ldaa
+comp 000
+brzs $end
+pdwa
+
+rdaa
+inca
+cpaa
+
+jmpi $stringLoop
+
+
+$end:
+jmpi $end

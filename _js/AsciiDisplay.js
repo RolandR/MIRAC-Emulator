@@ -1,10 +1,11 @@
 /*
-	A dot matrix display.
+	An ASCII text display.
 	
 	Address | Mode
 	--------+----------------
-	    040 | push ASCII character
-	    041 | set or replace character at caret
+	    040 | Push ASCII character
+	    041 | Set or replace character at caret
+	    042 | Clear and reset
 */
 
 var AsciiDisplay = new function(){
@@ -48,6 +49,9 @@ var AsciiDisplay = new function(){
 				} else {
 					handleControlCharacter(character);
 				}
+			break;
+			case "042": // Clear
+				reset();
 			break;
 		}
 	}

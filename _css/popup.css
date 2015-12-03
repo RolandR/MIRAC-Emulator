@@ -27,34 +27,76 @@
 
 .popup{
 	display: none;
-	background-color: #F8F8FF;
-	border: 1px rgba(0, 0, 0, 0.8) solid;
 	max-width: 600px;
 	width: 90%;
-	min-height: 200px;
-	margin: 50px auto;
-	overflow: hidden;
-	top: 10%;
+	margin: 50px auto 0px auto;
+	position: relative;
+	height: calc(85% - 60px);
+}
+
+.popup section, .popup h2{
+	border: 1px rgba(0, 0, 0, 0.8) solid;
+	box-sizing: border-box;
 }
 
 .popup h2{
 	display: block;
-	width: 100%;
 	background-color: #EEEEFF;
 	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
 	padding-left: 5px;
 	padding-top: 3px;
-	border-bottom: 1px rgba(0, 0, 0, 0.8) solid;
+	border-bottom: 0px;
+}
+
+.popup h3{
+	font-weight: 500;
+	margin: 7px 0px;
+}
+
+.popup section{
+	display: block;
+	padding: 5px;
+	font-family: OpenSans, sans-serif;
+	background-color: #F8F8FF;
+	min-height: 200px;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.popup table{
+	border-collapse: collapse;
+	margin-bottom: 7px;
+}
+
+.popup table td, .popup table th{
+	border: 1px #CCCCCC solid;
+	background-color: #FEFEFF;
+	text-align: left;
+	padding: 3px;
+}
+
+.popup table th{
+	font-weight: 500;
+}
+
+.popup code{
+	box-sizing: border-box;
+	border: 1px #CCCCCC solid;
+	background-color: #FEFEFF;
+	margin-bottom: 10px;
+	display: block;
+	width: 100%;
+	padding: 5px;
 }
 
 .popup .popupCloseButton{
 	float: right;
 	display: block;
-	margin: -2px 6px -2px -2px;
+	margin: -2px 1px -2px -2px;
 	height: 19px;
 	width: 19px;
 	text-align: center;
-	padding: 0px 5px;
+	padding: 0px 6px;
 	line-height: 1em;
 	font-family: OpenSans, sans-serif;
 }

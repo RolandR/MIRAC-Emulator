@@ -563,6 +563,7 @@ var Ins = {
 		Reg.abr.set(Reg.ar.get());
 		mem.read();
 		Reg.pdout.set(Reg.din.get());
+		Dev.update();
 	}
 	,pdwa: function(){
 		// Write accumulator value to periphery data out bus

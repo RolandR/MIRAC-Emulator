@@ -420,12 +420,228 @@ rsrt
 			<div id="overlayContainer">
 				<div class="popup" id="octalDisplayInfoPopup">
 					<h2>Info: Octal Display <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+					<section>
+						<h3>Octal Number Display</h3>
+						<table>
+							<tr><th>Address</th><th>Mode</th></tr>
+							<tr><td>020</td><td>Display single byte</td></tr>
+						</table>
+						
+						<h3>Description</h3>
+						
+						The octal display can display a single byte in base 8.<br />
+						Use is simple: Write a single bite to device address 020.
+
+						<h3>Examples</h3>
+
+						<code>
+							<span class="e-comment">// write octal 123 to display</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">PDAI</span>
+							<span class="e-octal" title="Binary: 00010000">020</span>
+							<span class="e-comment">// set device address</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">PDWI</span>
+							<span class="e-octal" title="Binary: 01010011">123</span>
+							<span class="e-comment">// write immediate byte</span>
+						</code>
+
+						<code>
+							<span class="e-comment">// write byte from memory address</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">PDAI</span>
+							<span class="e-octal" title="Binary: 00010000">020</span>
+							<span class="e-comment">// set device address</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 104">PDWM</span>
+							<span class="e-octal" title="Binary: 01000000">100</span>
+							<span class="e-comment">// write bite at memory location 100</span>
+						</code>
+
+						<code>
+							<span class="e-comment">// write byte from accumulator</span>
+							<br />
+							<span class="e-comment">// we're going to use the result of an addition</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 002">LDAI</span>
+							<span class="e-decimal" title="Octal: 024">20.</span>
+							<span class="e-comment">// load decimal 20</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 005">OPRA</span>
+							<span class="e-comment">// write accumulator to operand register</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 002">LDAI</span>
+							<span class="e-decimal" title="Octal: 052">42.</span>
+							<span class="e-comment">// load decimal 42</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 006">ADDC</span>
+							<span class="e-comment">// perform addition</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">PDAI</span>
+							<span class="e-octal" title="Binary: 00010000">020</span>
+							<span class="e-comment">// set device address</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 105">PDWA</span>
+							<span class="e-comment">// write addition result to display</span>
+						</code>
+
+						
+						
+					</section>
 				</div>
 				<div class="popup" id="dotMatrixInfoPopup">
 					<h2>Info: Dot Matrix <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+					<section>
+						<h3>Dot Matrix Display</h3>
+						<table>
+							<tr><th>Address</th><th>Mode</th></tr>
+							<tr><td>030</td><td>Flip pixel at coordinates YYYY XXXX</td></tr>
+							<tr><td>031</td><td>Turn on  pixel at coordinates YYYY XXXX</td></tr>
+							<tr><td>032</td><td>Turn off pixel at coordinates YYYY XXXX</td></tr>
+							<tr><td>033</td><td>Push byte to dot matrix, each byte controlling a pixel.</td></tr>
+							<tr><td>034</td><td>Fill matrix with pattern in pdout</td></tr>
+						</table>
+						<h3>Description</h3>
+						A 16x16 pixel monochrome dot matrix display.<br />
+						There are various modes for controlling it, including manipulating single pixels, badge feeding entire bytes and filling the screen with a single-byte pattern.
+						<h3>Examples</h3>
+						<code>
+							<span class="e-comment">// Flip a pixel somewhere in the middle</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">PDAI</span>
+							<span class="e-octal" title="Binary: 00011000">030</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">PDWI</span>
+							<span class="e-binary" title="Octal: 131">#01011001</span>
+							<span class="e-comment">// y = 5, x = 9</span>
+						</code>
+						<code>
+							<span class="e-comment">// Turn on and then off the bottom left pixel</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00011001">031</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 360">#11110000</span>
+							<span class="e-comment">// y = 15, x = 0</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00011010">032</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 360">#11110000</span>
+						</code>
+						<code>
+							<span class="e-comment">// Fill in some pixels, starting from the top</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00011011">033</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 210">#10001000</span>
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 210">#10001000</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 314">#11001100</span>
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 314">#11001100</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 252">#10101010</span>
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 252">#10101010</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 377">#11111111</span>
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 377">#11111111</span>
+							<br />
+							<span class="e-comment">// Mode 033 is useful for displaying entire images</span>
+						</code>
+						<code>
+							<span class="e-comment">// Blank screen</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00011100">034</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-binary" title="Octal: 000">#00000000</span>
+						</code>
+					</section>
 				</div>
 				<div class="popup" id="asciiDisplayInfoPopup">
 					<h2>Info: ASCII Display <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+					<section>
+						<h3>ASCII Text Display</h3>
+						<table>
+							<tr><th>Address</th><th>Mode</th></tr>
+							<tr><td>040</td><td>Set or replace character right of caret</td></tr>
+							<tr><td>041</td><td>Set or replace character at caret</td></tr>
+							<tr><td>042</td><td>Clear and reset</td></tr>
+						</table>
+						<h3>Description</h3>
+						A 10-character ASCII text display.<br />
+						The display has an internal caret (cursor).<br />
+						It increments if characters are written in mode 040. It wraps around when it reaches the last position.<br />
+						Reset (Mode 042) resets the caret to position 0.<br />
+						<br />
+						The character 127 (octal 177) acts as backspace.<br />
+						It will clear the character at the caret, and decrement the caret position.<br />
+						<h3>Examples</h3>
+						<code>
+							<span class="e-comment">// Write "Foo" at cursor</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00100000">040</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-valid-char" title="Octal: 70">'F'</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-valid-char" title="Octal: 111">'o'</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-valid-char" title="Octal: 112">'p'</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-decimal" title="Octal: 177">127.</span>
+							<span class="e-comment">//127 is backspace</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-valid-char" title="Octal: 111">'o'</span>
+						</code>
+						<code>
+							<span class="e-comment">// Clear and reset</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00100010">042</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-octal" title="Binary: 00000000">000</span>
+							<span class="e-comment">// Could be any value</span>
+						</code>
+						<code>
+							<span class="e-comment">// Blinking cursor animation</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 101">pdai</span>
+							<span class="e-octal" title="Binary: 00100001">041</span>
+							<br />
+							<span class="e-define-label">$loop:</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-valid-char" title="Octal: 32">' '</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 000">nope</span>
+							<span class="e-comment">// for timing, because jmpi takes one tick</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 103">pdwi</span>
+							<span class="e-valid-char" title="Octal: 95">'_'</span>
+							<br />
+							<span class="e-valid-instruction" title="Opcode 004">jmpi</span>
+							<span class="e-label">$loop</span>
+						</code>
+					</section>
 				</div>
 			</div>
 		</div>

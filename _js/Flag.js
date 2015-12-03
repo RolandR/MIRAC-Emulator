@@ -15,14 +15,14 @@ function Flag(id){
 		element.innerHTML = value;
 		
 		if(Config.useAnimations){
-			element.className += ' written';
-			setTimeout(function(){element.className = ""}, 10);
+			element.className = 'written';
+			setTimeout(function(){element.className = ""}, 50);
 		}
 	}
 	function get(){
 		if(Config.useAnimations){
-			element.className += ' read';
-			setTimeout(function(){element.className = ""}, 10);
+			element.className = 'read';
+			setTimeout(function(){element.className = ""}, 50);
 		}
 		
 		return value;

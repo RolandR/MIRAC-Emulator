@@ -1,0 +1,55 @@
+pdai 033
+
+pdwi #00000000 pdwi #00000000
+pdwi #01000000 pdwi #00000010
+pdwi #01000000 pdwi #00000010
+pdwi #00111110 pdwi #01111100
+pdwi #00000000 pdwi #00000000
+pdwi #00001100 pdwi #00110000
+pdwi #00010010 pdwi #01001000
+pdwi #00010010 pdwi #01001000
+pdwi #00001100 pdwi #00110000
+pdwi #00000000 pdwi #00000000
+pdwi #00000001 pdwi #10000000
+pdwi #00000011 pdwi #11000000
+pdwi #00000011 pdwi #11000000
+pdwi #00000001 pdwi #10000000
+pdwi #00000001 pdwi #10000000
+pdwi #00000000 pdwi #00000000
+
+jsrt $longdelay
+
+pdwi #00000000 pdwi #00000000
+pdwi #01000000 pdwi #00000010
+pdwi #01000000 pdwi #00000010
+pdwi #00111110 pdwi #01111100
+pdwi #00000000 pdwi #00000000
+pdwi #00001100 pdwi #00000000
+pdwi #00010010 pdwi #00001000
+pdwi #00010010 pdwi #01110000
+pdwi #00001100 pdwi #00000000
+pdwi #00000000 pdwi #00000000
+pdwi #00000001 pdwi #10000000
+pdwi #00000011 pdwi #11000000
+pdwi #00000011 pdwi #11000000
+pdwi #00000001 pdwi #10000000
+pdwi #00000001 pdwi #10000000
+pdwi #00000000 pdwi #00000000
+
+jsrt $shortdelay
+
+jmpi 000
+
+$longdelay:
+ldai 0.
+jmpi $delayloop
+
+$shortdelay:
+ldai 20.
+jmpi $delayloop
+
+$delayloop:
+inca
+comp 50.
+brzz $delayloop
+rsrt

@@ -16,14 +16,14 @@ function Register(id){
 		element.title = "Dec:\t"+binToDec(value) + " \nBin:\t"+ value;
 		
 		if(Config.useAnimations){
-			element.className += ' written';
-			setTimeout(function(){element.className = "registerValue"}, 10);
+			element.className = 'registerValue written';
+			setTimeout(function(){element.className = "registerValue"}, 50);
 		}
 	}
 	function get(){
 		if(Config.useAnimations){
-			element.className += ' read';
-			setTimeout(function(){element.className = "registerValue"}, 10);
+			element.className = 'registerValue read';
+			setTimeout(function(){element.className = "registerValue"}, 50);
 		}
 		
 		return value;

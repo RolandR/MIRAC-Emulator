@@ -37,7 +37,8 @@ var Assembler = new function(){
 				lines.splice(i, 1);
 				continue;
 			}
-			
+
+			lines[i] = lines[i].replace(/\B' '\B/g, "'SPACE'"); // replace ' ' with 'SPACE', to avoid it being split(' ');
 			lines[i] = lines[i].split(" ");
 			var l = lines[i].length;
 			while(l--){
@@ -74,6 +75,10 @@ var Assembler = new function(){
 				
 				// Translate printable ascii chars (syntax: 'a')
 				// to octal
+				if(lines[i][l] === "'SPACE'"){ // first, revert placeholder 'SPACE'
+					lines[i][l] = "' '";
+				}
+				
 				if(/'[ -~]'/g.test(lines[i][l]) === true){
 					var character = lines[i][l].charCodeAt(1);
 					lines[i][l] = decToOct(character);

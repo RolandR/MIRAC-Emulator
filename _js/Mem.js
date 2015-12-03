@@ -49,8 +49,8 @@ var Mem = function(
 		memory[addr].element.innerHTML = binToOct(memory[addr].data);
 		
 		if(Config.useAnimations){
-			memory[addr].element.className += ' written';
-			setTimeout(function(){memory[addr].element.className = ""}, 10);
+			memory[addr].element.className = 'written';
+			setTimeout(function(){memory[addr].element.className = ""}, 50);
 		}
 	}
 	
@@ -62,8 +62,8 @@ var Mem = function(
 		dInReg.set(memory[addr].data);
 		
 		if(Config.useAnimations){
-			memory[addr].element.className += ' read';
-			setTimeout(function(){memory[addr].element.className = ""}, 10);
+			memory[addr].element.className = 'read';
+			setTimeout(function(){memory[addr].element.className = "";}, 50);
 		}
 	}
 	
