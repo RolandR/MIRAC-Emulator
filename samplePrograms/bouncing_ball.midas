@@ -1,3 +1,15 @@
+pdai 040
+pdwi '~'
+pdwi 'W'
+pdwi 'e'
+pdwi 'l'
+pdwi 'c'
+pdwi 'o'
+pdwi 'm'
+pdwi 'e'
+pdwi '!'
+pdwi '~'
+
 ldai #11000000
 pdai 031
 $drawLineLoop:
@@ -23,10 +35,6 @@ jmpi $moveLoop
 
 $move:
 rdac
-psha
-pdai 032
-jsrt $render
-pula
 comp 000
 brzs $moveUpRight
 comp 001
@@ -96,8 +104,8 @@ cpaa
 jmpi $resumeMove
 
 $resumeMove:
-pdai 031
-jsrt $render
+jsrt $erase
+jsrt $draw
 
 rdab
 comp #00001011
@@ -167,13 +175,28 @@ $rightBounce:
     cpac
 rsrt
 
-$render:
+$draw:
+    pdai 031
     rdab
+    cpae
     opra
     ldai #00010000
     mult
     opra
     rdaa
+    cpad
+    addc
+    pdwa
+rsrt
+
+$erase:
+    pdai 032
+    rdae
+    opra
+    ldai #00010000
+    mult
+    opra
+    rdad
     addc
     pdwa
 rsrt

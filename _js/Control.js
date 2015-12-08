@@ -13,7 +13,8 @@ var Control = {
 	,openPopupId: ""
 	
 	,init: function(){
-		Control.loadToRam();
+		Control.openSampleProgram(Config.sampleProgram, true);
+		document.getElementById("cycleInterval").value = Config.interval;
 	}
 	,loadToRam: function(){
 		var rom = document.getElementById('romText').value;
@@ -57,10 +58,10 @@ var Control = {
 		Opcodes.runByBin(Reg.ir.get());
 		
 		if(!Control.paused){
-			if(Config.waitMillisecondsAfterCycle == 0){
+			if(Config.interval == 0){
 				cycleTimeout = setZeroTimeout(Control.cycle);
 			} else {
-				cycleTimeout = setTimeout(Control.cycle, Config.waitMillisecondsAfterCycle);
+				cycleTimeout = setTimeout(Control.cycle, Config.interval);
 			}
 		}
 	}
@@ -111,13 +112,13 @@ var Control = {
 		var newValue = document.getElementById('cycleInterval').value;
 		newValue = Math.round(newValue);
 		if(isNaN(newValue)){
-			document.getElementById('cycleInterval').value = Config.waitMillisecondsAfterCycle;
+			document.getElementById('cycleInterval').value = Config.interval;
 		} else {
-			Config.waitMillisecondsAfterCycle = newValue;
+			Config.interval = newValue;
 			if(Control.cycleInterval !== false){
 				clearInterval(Control.cycleInterval);
 				Control.cycleInterval = false;
-				Control.cycleInterval = setInterval(Control.cycle, Config.waitMillisecondsAfterCycle);
+				Control.cycleInterval = setInterval(Control.cycle, Config.interval);
 			}
 		}
 	}
@@ -153,8 +154,16 @@ var Control = {
 			this.hidePopup(this.openPopupId);
 		}
 	}
-	,openSampleProgram: function(program){
-		loadFile("./samplePrograms/"+program, Control.showSampleProgram);
+	,openSampleProgram: function(program, compile){
+		if(compile){
+			var callback = function(response, status, url){
+				Control.showSampleProgram(response, status, url);
+				Control.loadToRam();
+			}
+		} else {
+			var callback = Control.showSampleProgram;
+		}
+		loadFile("./samplePrograms/"+program, callback);
 		Control.closeCurrentPopup();
 	}
 	,showSampleProgram: function(response, status, url){

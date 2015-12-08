@@ -11,7 +11,7 @@ function Editor(
 	var markup = [];
 	
 	function init(){
-		onEdit();
+		
 	}
 	
 	function onEdit(){

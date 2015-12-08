@@ -6,11 +6,13 @@ var ALU = {
 		a = a.split("");
 		b = b.split("");
 		
-		carry = "0";
+		var carry = "0";
 		
 		if(useFlags){
-			carry = Flags.c;
+			//carry = Flags.c.get();
 		}
+
+		var carryIn = carry;
 		
 		result = "";
 		for(var i = a.length-1; i >= 0; i--){
@@ -50,7 +52,13 @@ var ALU = {
 				Flags.z.set("1");
 			} else {
 				Flags.z.set("0");
-			}	
+			}
+
+			if(a[0] != b[0]){
+				Flags.o.set("1");
+			} else {
+				Flags.o.set("0");
+			}
 		}
 		
 		return result;
