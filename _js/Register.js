@@ -13,7 +13,11 @@ function Register(id){
 	function set(v){
 		value = v.substring(v.length - 8, v.length);
 		element.innerHTML = binToOct(value);
-		element.title = "Dec:\t"+binToDec(value) + " \nBin:\t"+ value;
+		var signed = "";
+		if(value.substring(0, 1) == "1"){
+			signed = " ("+binToSigned(value)+")";
+		}
+		element.title = "Dec: "+binToDec(value) + signed + "\nBin:  "+ value;
 		
 		if(Config.useAnimations){
 			element.className = 'registerValue written';

@@ -32,6 +32,16 @@ function binToDec(bin){
 	return dec+"";
 }
 
+function binToSigned(bin){
+	if(bin.substring(0, 1) == "1"){
+		bin = ALU.subtract(bin, "00000001", false);
+		bin = ALU.not(bin, false);
+		return "-"+binToDec(bin);
+	} else {
+		return binToDec(bin);
+	}
+}
+
 function octToDec(oct){
 	oct = oct.split("");
 	var dec = 0;

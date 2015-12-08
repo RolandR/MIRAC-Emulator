@@ -13,6 +13,7 @@ var ALU = {
 		}
 
 		var carryIn = carry;
+		var lastCarry = "0";
 		
 		result = "";
 		for(var i = a.length-1; i >= 0; i--){
@@ -42,6 +43,9 @@ var ALU = {
 				carry = "1";
 				result = "1" + result;
 			}
+			if(i == 1){
+				lastCarry = carry;
+			}
 		}
 		
 		if(useFlags){
@@ -54,7 +58,7 @@ var ALU = {
 				Flags.z.set("0");
 			}
 
-			if(a[0] != b[0]){
+			if(lastCarry != carry){
 				Flags.o.set("1");
 			} else {
 				Flags.o.set("0");
