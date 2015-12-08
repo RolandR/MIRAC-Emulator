@@ -50,7 +50,7 @@ var Assembler = new function(){
 						lines[i][l] = Opcodes.mnemonicToOct(lines[i][l]);
 						if(lines[i][l] == ""){
 							error = true;
-							errorMsg += "Assembler: Unknown instruction: "+mnemonic+" on line "+(Math.round(i)+1)+"\n";
+							errorMsg += "Unknown instruction: "+mnemonic+" on line "+(Math.round(i)+1)+"\n";
 						}
 					}
 				}
@@ -122,13 +122,15 @@ var Assembler = new function(){
 				}
 				if(!foundLabel){
 					error = true;
-					errorMsg += "Assembler: Could not resolve label: "+instructions[i]+"\n";
+					errorMsg += "Could not resolve label: "+instructions[i]+"\n";
 				}
 			}
 		}
 		
 		if(error){
-			console.error(errorMsg);
+			var errorsElement = document.getElementById("errors");
+			errorsElement.innerHTML = "<h3>There were errors on assembly.</h3>" + errorMsg.replace(/\n/g, "<br />");
+			Control.showPopup('errorPopup');
 		} else {
 			return instructions;
 		}

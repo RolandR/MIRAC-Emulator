@@ -128,16 +128,16 @@ function Editor(
 			// put caret at right position again (add one for the tab)
 			this.selectionStart = this.selectionEnd = start + 4;
 
-			// prevent the focus lose
+			// prevent loss of focus
 			e.preventDefault();
 			
 			onEdit();
 		}
 	},false);
 	
-	return{
+	return {
 		 onEdit: onEdit
 		,onScroll: onScroll
 		,init: init
-	}
+	};
 }

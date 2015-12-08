@@ -1,0 +1,15 @@
+// Program draws itself on dot matrix
+pdai 033
+$start:
+psha
+ldaa
+pdwa
+pula
+inca
+comp $end
+brzs $reset
+jmpi $start
+$reset:
+ldai 000
+jmpi $start
+$end:

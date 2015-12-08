@@ -100,3 +100,39 @@
 	line-height: 1em;
 	font-family: OpenSans, sans-serif;
 }
+
+.popup .sampleProgram{
+	border: 1px #DDDDDD solid;
+	background-color: #FFFFFF;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+
+.popup .sampleProgram h3{
+	line-height: 0.6
+}
+
+.popup .sampleProgram .sampleProgramButton{
+	float: right;
+	height: 48px;
+    width: 60px;
+}
+
+#errorPopup section{
+	color: #AA0000;
+}
+
+#errorPopup section h3{
+	color: #000000;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,7 @@ var Control = {
 		rom = Control.assemble(rom);
 		
 		var startingAddress = document.getElementById('loadToAddress').value;
-		startingAddress = ("000" + startingAddress).slice(-3);
+		startingAddress = ("000" + startingAddress).slice(-3); // 12 -> 012
 		startingAddress = octToBin(startingAddress);
 		
 		Reg.abr.set(startingAddress);
@@ -151,6 +151,20 @@ var Control = {
 	,closeCurrentPopup: function(){
 		if(this.openPopupId != ""){
 			this.hidePopup(this.openPopupId);
+		}
+	}
+	,openSampleProgram: function(program){
+		loadFile("./samplePrograms/"+program, Control.showSampleProgram);
+		Control.closeCurrentPopup();
+	}
+	,showSampleProgram: function(response, status, url){
+		if(status == 0 || status == 200){
+			document.getElementById("romText").innerHTML = response;
+			editor.onEdit();
+		} else {
+			var errorsElement = document.getElementById("errors");
+			errorsElement.innerHTML = "Could not load file "+url+"<br />HTTP Status: "+status;
+			Control.showPopup('errorPopup');
 		}
 	}
 }

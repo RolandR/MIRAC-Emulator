@@ -83,7 +83,11 @@
 					<a href="https://github.com/RolandR/MIRAC-Emulator" target="_blank">Github Repository</a>. Made by <a href="http://rolandrytz.ch" target="_blank">Roland Rytz</a>.
 				</p>
 			</div><div id="romInput" class="panel">
-				<h2><abbr title="MIDAS - Mirac Direct Assembly">MIDAS</abbr> Assembly Input<button id="biggerButton" onclick="Control.toggleEditorSize();"></button></h2>
+				<h2>
+				<abbr title="MIDAS - Mirac Direct Assembly">MIDAS</abbr> Assembly Input
+				<button id="loadProgramButton" onclick="Control.showPopup('exampleProgramsPopup');">Load example...</button>
+				<button id="biggerButton" onclick="Control.toggleEditorSize();"></button>
+				</h2>
 				<div id="#romLines">
 				</div>
 				<div id="romTextContainer"><!--TextAreas are bugged-->
@@ -326,7 +330,7 @@ rsrt
 					<div class="displaySegment" id="displaySegment0"></div><div class="displaySegment" id="displaySegment1"></div><div class="displaySegment" id="displaySegment2"></div>
 				</div>
 				<span class="peripheryDocs" onclick="Control.showPopup('octalDisplayInfoPopup');">Docs</span>
-			</div><br /><div id="joystick" class="panel">
+			</div><br /><!--div id="joystick" class="panel">
 				<h2 title="Device Address: 050">Joystick</h2>
 				<div class="joystickContainer">
 					<table>
@@ -342,7 +346,7 @@ rsrt
 					</table>
 				</div>
 				<span class="peripheryDocs" onclick="Control.showPopup('dotMatrixInfoPopup');">Docs</span>
-			</div></div><div id="dotMatrix" class="panel">
+			</div--></div><div id="dotMatrix" class="panel">
 				<h2 title="Device Addresses: 030 - 034">Dot Matrix</h2>
 				<div class="dotMatrixContainer">
 					<canvas id="dotMatrixCanvas" height="160" width="160"></canvas>
@@ -643,12 +647,54 @@ rsrt
 						</code>
 					</section>
 				</div>
+				<div class="popup" id="exampleProgramsPopup">
+					<h2>Example Programs <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+					<section>
+						<div class="sampleProgram">
+							<button class="sampleProgramButton" onclick="Control.openSampleProgram('bouncing_ball.midas')">Open</button>
+							<h3>Bouncing Ball</h3>
+							Displays a bouncing ball on the dot matrix.
+						</div>
+						<div class="sampleProgram">
+							<button class="sampleProgramButton" onclick="Control.openSampleProgram('show_picture.midas')">Open</button>
+							<h3>Show Picture</h3>
+							Displays a static image on the dot matrix.
+						</div>
+						<div class="sampleProgram">
+							<button class="sampleProgramButton" onclick="Control.openSampleProgram('winking_owl.midas')">Open</button>
+							<h3>Winking Owl</h3>
+							Shows a way to display two alternating images.
+						</div>
+						<div class="sampleProgram">
+							<button class="sampleProgramButton" onclick="Control.openSampleProgram('visual_quine.midas')">Open</button>
+							<h3>Visual Quine</h3>
+							This program draws a visual representation of itself.
+						</div>
+						<div class="sampleProgram">
+							<button class="sampleProgramButton" onclick="Control.openSampleProgram('string_loader.midas')">Open</button>
+							<h3>String Loader</h3>
+							Displays a string of characters on the ASCII display.
+						</div>
+						<div class="sampleProgram">
+							<button class="sampleProgramButton" onclick="Control.openSampleProgram('generic_sample_program.midas')">Open</button>
+							<h3>Stack demo</h3>
+							A simple example program with recursion.
+						</div>
+					</section>
+				</div>
+				<div class="popup" id="errorPopup">
+					<h2>Error <button class="popupCloseButton" onclick="Control.hidePopup(this.parentElement.parentElement.id);">x</button></h2>
+					<section id="errors">
+						
+					</section>
+				</div>
 			</div>
 		</div>
 		
 		
 		
 		<script type="text/javascript" src="./_js/setZeroTimeout.js"></script>
+		<script type="text/javascript" src="./_js/loadFile.js"></script>
 		
 		<script type="text/javascript" src="./_js/Config.js"></script>
 		
