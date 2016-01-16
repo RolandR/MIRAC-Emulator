@@ -42,7 +42,6 @@ var Control = {
 	,hardReset: function(){
 		Control.reset();
 		mem.reset();
-		stack.reset();
 	}
 	
 	,cycleInterval: false
@@ -84,6 +83,7 @@ var Control = {
 		Reg.reset();
 		Flags.reset();
 		Dev.resetAll();
+		stack.reset();
 	}
 
 	,start: function(){
