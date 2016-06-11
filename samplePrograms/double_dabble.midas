@@ -1,0 +1,34 @@
+// Display number on ASCII display in decimal
+
+ldai 123.
+cpaa
+
+ldai 8.
+
+$loop:
+psha
+jsrt $shift
+pula
+deca
+brzs $end
+jmpi $loop
+
+$shift:
+    rdaa
+    lsha
+    cpaa
+
+    pshf
+    rdab
+    lsha
+    pulf
+
+    brcz $cont
+        inca
+    $cont:
+    cpab
+
+rsrt
+
+$end:
+jmpi $end

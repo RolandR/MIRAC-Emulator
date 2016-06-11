@@ -12,12 +12,15 @@ function Register(id){
 	
 	function set(v){
 		value = v.substring(v.length - 8, v.length);
-		element.innerHTML = binToOct(value);
-		var signed = "";
-		if(value.substring(0, 1) == "1"){
-			signed = " ("+binToSigned(value)+")";
+
+		if(Config.displayValues){
+			element.innerHTML = binToOct(value);
+			var signed = "";
+			if(value.substring(0, 1) == "1"){
+				signed = " ("+binToSigned(value)+")";
+			}
+			element.title = "Dec: "+binToDec(value) + signed + "\nBin:  "+ value;
 		}
-		element.title = "Dec: "+binToDec(value) + signed + "\nBin:  "+ value;
 		
 		if(Config.useAnimations){
 			element.className = 'registerValue written';

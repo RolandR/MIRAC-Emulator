@@ -15,16 +15,21 @@ var Opcodes = {
 		return false;
 	}
 	,runByBin: function(bin){
+
+		/*
+			Note: I tried replacing the for lookup with just getting
+			ops[binToDec(bin)], but there was barely any boost in performance,
+			so I'll keep the for loop for now because it prevents future
+			headache with opcode values.
+		*/
+		
 		for(var i in Opcodes.ops){
 			if(Opcodes.ops[i].bin == bin){
-				//try{
-					Opcodes.ops[i].run();
-				/*} catch(e){
-					console.error("Error: "+Opcodes.ops[i].mnemonic);
-				}*/
+				Opcodes.ops[i].run();
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	,mnemonicToOct: function(mnemonic){ // mnemonic is a truly broken word... mnemonic. mnemonic...
@@ -62,6 +67,7 @@ var Opcodes = {
 		,new Opcode('026', 'rdad', Ins.rdad)
 		,new Opcode('027', 'cpae', Ins.cpae)
 		,new Opcode('030', 'rdae', Ins.rdae)
+		,new Opcode('031', 'nope', Ins.nope) // fix
 		,new Opcode('032', 'cpaf', Ins.cpaf)
 		,new Opcode('033', 'rdaf', Ins.rdaf)
 		,new Opcode('034', 'cpag', Ins.cpag)

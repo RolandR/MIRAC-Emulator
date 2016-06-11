@@ -68,7 +68,9 @@ var Control = {
 	
 	,measureFrequency: function(){
 		document.getElementById("frequency").innerHTML = Control.cycleCountSinceMeasure * (1000/Config.frequencyMeasuringFrequency) + " Hz";
+		
 		Control.cycleCountSinceMeasure = 0;
+		
 	}
 	
 	,toggleRun: function(){
@@ -139,6 +141,9 @@ var Control = {
 	,updateUseAnimations: function(){
 		Config.useAnimations = document.getElementById("useAnimations").checked;
 	}
+	,updateDisplayValues: function(){
+		Config.displayValues = document.getElementById("displayValues").checked;
+	}
 	,showPopup: function(id){
 		this.openPopupId = id;
 		document.getElementById("popupOverlay").style.display = "block";
@@ -163,6 +168,7 @@ var Control = {
 		} else {
 			var callback = Control.showSampleProgram;
 		}
+		
 		loadFile("./samplePrograms/"+program, callback);
 		Control.closeCurrentPopup();
 	}

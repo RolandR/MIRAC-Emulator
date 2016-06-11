@@ -45,8 +45,10 @@ var Mem = function(
 			return false;
 		}
 		memory[addr].data = dOutReg.get();
-		
-		memory[addr].element.innerHTML = binToOct(memory[addr].data);
+
+		if(Config.displayValues){
+			memory[addr].element.innerHTML = binToOct(memory[addr].data);
+		}
 		
 		if(Config.useAnimations){
 			memory[addr].element.className = 'written';

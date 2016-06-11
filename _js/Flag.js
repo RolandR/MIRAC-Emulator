@@ -12,7 +12,10 @@ function Flag(id){
 	
 	function set(v){
 		value = v.substring(v.length - 1, v.length);
-		element.innerHTML = value;
+
+		if(Config.displayValues){
+			element.innerHTML = value;
+		}
 		
 		if(Config.useAnimations){
 			element.className = 'written';

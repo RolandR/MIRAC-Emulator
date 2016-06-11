@@ -166,7 +166,7 @@
 			 --><button id="resetmem" onclick="Control.hardReset();" title="Clears memory and all registers and flags."><span></span>Hard reset</button><!--
 			 --><hr /><!--
 			 --><span class="controlValueLabel">Cycle interval: </span><!--
-			 --><input class="controlValue" id="cycleInterval" type="number" value="n/a" /><!--
+			 --><input class="controlValue" id="cycleInterval" type="number" value="" /><!--
 			 --><button class="controlValueButton" id="cycleIntervalButton" onclick="Control.updateCycleInterval();">Apply</button><!--
 			 --><hr /><!--
 			 --><span class="controlValueLabel">Set PC (octal): </span><!--
@@ -177,7 +177,10 @@
 			 --><span class="controlValueLabel" id="frequency" title="Breathtaking speeds!">(Paused)</span><!--
 			 --><hr /><!--
 			 --><span class="controlValueLabel">Use animations: </span><!--
-			 --><input class="controlValue" id="useAnimations" type="checkbox" checked="true" onclick="Control.updateUseAnimations();" />
+			 --><input class="controlValue" id="useAnimations" type="checkbox" checked="true" onclick="Control.updateUseAnimations();" /><!--
+			 --><hr /><!--
+			 --><span class="controlValueLabel">Update values: </span><!--
+			 --><input class="controlValue" id="displayValues" type="checkbox" checked="true" onclick="Control.updateDisplayValues();" />
 			 
 			 
 			 </div><div id="flags" class="rightPanelDiv panel">

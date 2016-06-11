@@ -18,11 +18,12 @@ var args = window.location.search;
 	}
 }*/
 
-console.log(args);
+//console.log(args);
 
 var Config = {
 	 interval: 0
 	,frequencyMeasuringFrequency: 1000 // Yeah, that's a good variable name - defines how often clock frequency is measured
 	,useAnimations: true // Use css transitions for read/write highlight
+	,displayValues: true // Update register values in HTML
 	,sampleProgram: "bouncing_ball.midas" // Default program to be loaded to editor at startup, in ./samplePrograms/
 }
