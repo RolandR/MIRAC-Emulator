@@ -5,4 +5,6 @@ MIRAC-Emulator
 
 A JavaScript emulation of the Minecraft Redstone Automatic Computer.
 
-Demo: http://rolandrytz.ch/various/mirac/
+Demo: https://draemm.li/various/mirac/
+
+[![Screenshot](/screenshot.png)](https://draemm.li/various/mirac/)
