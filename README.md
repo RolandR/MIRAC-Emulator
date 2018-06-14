@@ -1,3 +1,5 @@
+![Logo](/Mirac-Logo.svg)
+
 MIRAC-Emulator
 ==============
 
